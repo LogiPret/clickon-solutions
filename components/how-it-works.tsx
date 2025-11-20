@@ -1,7 +1,14 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Database, TrendingUp, Users, ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const solutions = [
   {
@@ -40,23 +47,88 @@ const solutions = [
 ];
 
 export function HowItWorks() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
-    <section id="how-it-works" className="bg-white px-6 py-24 md:py-32">
+    <section id="how-it-works" className="bg-white px-6 pt-24 md:pt-32">
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-20 text-center"
+          className="mb-12 text-center md:mb-20"
         >
-          <h2 className="mb-6 text-4xl leading-tight font-bold md:text-5xl lg:text-6xl">
+          <h2 className="mb-6 text-3xl leading-tight font-bold md:text-5xl lg:text-6xl">
             Donnez-vous les bons outils pour atteindre vos objectifs et approfondir les relations
             clients.
           </h2>
         </motion.div>
 
-        <div className="mb-16 grid gap-8 md:grid-cols-3">
+        {/* Mobile Carousel */}
+        <div className="mb-16 md:hidden">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {solutions.map((solution, index) => (
+                <CarouselItem key={index} className="basis-[85%] pl-4 sm:basis-[70%]">
+                  <div className="flex h-full flex-col rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-gray-300">
+                    <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-black">
+                      <solution.icon className="h-6 w-6 text-white" />
+                    </div>
+
+                    <h3 className="mb-3 text-xl font-bold">{solution.title}</h3>
+                    <p className="mb-6 text-sm leading-relaxed text-gray-600">
+                      {solution.description}
+                    </p>
+
+                    <ul className="mb-6 grow space-y-3">
+                      {solution.features.map((feature, idx) => (
+                        <li key={idx} className="text-sm leading-relaxed text-gray-700">
+                          • {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="mt-6 flex justify-center gap-2">
+              {Array.from({ length: count }).map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                    index + 1 === current ? "bg-black" : "bg-black/20"
+                  }`}
+                />
+              ))}
+            </div>
+          </Carousel>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="mb-16 hidden gap-8 md:grid md:grid-cols-3">
           {solutions.map((solution, index) => (
             <motion.div
               key={index}
@@ -64,7 +136,7 @@ export function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="rounded-xl border border-gray-200 bg-white p-8 transition-colors hover:border-gray-300"
+              className="flex flex-col rounded-xl border border-gray-200 bg-white p-8 transition-colors hover:border-gray-300"
             >
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-black">
                 <solution.icon className="h-7 w-7 text-white" />
@@ -73,18 +145,13 @@ export function HowItWorks() {
               <h3 className="mb-4 text-2xl font-bold">{solution.title}</h3>
               <p className="mb-6 leading-relaxed text-gray-600">{solution.description}</p>
 
-              <ul className="mb-6 space-y-3">
+              <ul className="mb-6 grow space-y-3">
                 {solution.features.map((feature, idx) => (
                   <li key={idx} className="text-sm leading-relaxed text-gray-700">
                     {feature}
                   </li>
                 ))}
               </ul>
-
-              <button className="inline-flex items-center gap-2 font-medium text-[#fcb723] transition-all hover:gap-3">
-                En savoir plus
-                <ArrowRight className="h-4 w-4" />
-              </button>
             </motion.div>
           ))}
         </div>

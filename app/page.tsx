@@ -4,8 +4,8 @@ import { HowItWorks } from "@/components/how-it-works";
 import { InteractiveDashboard } from "@/components/interactive-dashboard";
 import { ResultsSection } from "@/components/results-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
+import { ClubPrivilegeSection } from "@/components/club-privilege-section";
 import { DemoSection } from "@/components/demo-section";
-import { CalendlySection } from "@/components/calendly-section";
 import { FAQSection } from "@/components/faq-section";
 import { Footer } from "@/components/footer";
 import { FloatingCTA } from "@/components/floating-cta";
@@ -17,11 +17,11 @@ export default function Home() {
       <main>
         <HeroSection />
         <HowItWorks />
-        <InteractiveDashboard />
         <ResultsSection />
+        <InteractiveDashboard />
         <TestimonialsSection />
+        <ClubPrivilegeSection />
         <DemoSection />
-        <CalendlySection />
         <FAQSection />
         <Footer />
         <FloatingCTA />

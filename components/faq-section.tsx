@@ -24,16 +24,6 @@ const faqs = [
     answer:
       "Oui ! ClickOn s'intègre facilement avec les principaux CRM du marché. Vous pouvez aussi importer vos contacts via un simple fichier Excel.",
   },
-  {
-    question: "Quel est le coût de ClickOn ?",
-    answer:
-      "Nos forfaits commencent à partir de 197$/mois. Le ROI moyen de nos clients est de 15:1 - pour chaque dollar investi, ils génèrent 15$ de revenus supplémentaires.",
-  },
-  {
-    question: "Puis-je annuler à tout moment ?",
-    answer:
-      "Absolument. Aucun engagement à long terme. Vous pouvez annuler votre abonnement à tout moment sans frais ni pénalités.",
-  },
 ];
 
 export function FAQSection() {

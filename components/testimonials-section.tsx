@@ -52,7 +52,7 @@ export function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="rounded-xl border border-gray-200 bg-white p-8 transition-colors hover:border-gray-300"
+              className="flex flex-col rounded-xl border border-gray-200 bg-white p-8 transition-colors hover:border-gray-300"
             >
               <div className="mb-6 flex gap-1">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -62,7 +62,7 @@ export function TestimonialsSection() {
 
               <p className="mb-8 leading-relaxed text-gray-700">{testimonial.content}</p>
 
-              <div className="flex items-center gap-4">
+              <div className="mt-auto flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black font-bold text-white">
                   {testimonial.name
                     .split(" ")
