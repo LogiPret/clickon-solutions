@@ -34,13 +34,7 @@ export function ResultsSection() {
   return (
     <section id="results" className="bg-[#fcb723] px-6 py-24 md:py-32">
       <div className="container mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 text-left sm:text-center"
-        >
+        <div className="mb-16 text-left sm:text-center">
           <h2 className="mb-6 text-4xl font-bold md:text-5xl">
             Des résultats qui parlent d'eux-mêmes
           </h2>
@@ -48,7 +42,7 @@ export function ResultsSection() {
             Nos campagnes mensuelles automatisées vous assurent une présence constante auprès de vos
             clients
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">
           {stats.map((stat, index) => (

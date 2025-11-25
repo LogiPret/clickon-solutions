@@ -78,19 +78,12 @@ export function InteractiveDashboard() {
       {/* </CHANGE> */}
       <div className="relative z-10 container mx-auto max-w-7xl px-4">
         <div className="mb-12 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="mb-4 text-4xl font-bold md:text-5xl">
-              Calculez votre <span className="text-[#fcb723]">potentiel</span>
-            </h2>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              Découvrez combien de ventes additionnelles ClickOn peut générer pour votre entreprise
-            </p>
-          </motion.div>
+          <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+            Calculez votre <span className="text-[#fcb723]">potentiel</span>
+          </h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            Découvrez combien de ventes additionnelles ClickOn peut générer pour votre entreprise
+          </p>
         </div>
 
         <div className="mx-auto mb-8 grid max-w-4xl gap-4 md:mb-12 md:grid-cols-2 md:gap-6">
@@ -220,16 +213,6 @@ export function InteractiveDashboard() {
                 })}{" "}
                 par vente
               </p>
-              <div className="mx-auto flex max-w-md flex-col gap-3 md:flex-row">
-                <Input
-                  type="email"
-                  placeholder="votre@email.com"
-                  className="h-10 rounded-lg border-0 bg-white/95 text-gray-900 placeholder:text-gray-500 md:h-12"
-                />
-                <button className="rounded-lg bg-[#fcb723] px-6 py-2.5 font-bold whitespace-nowrap text-black shadow-xl transition-all hover:scale-105 hover:bg-[#e5a520] md:py-3">
-                  Recevez votre aperçu
-                </button>
-              </div>
             </div>
           </Card>
         </motion.div>

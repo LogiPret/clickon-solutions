@@ -31,20 +31,14 @@ export function TestimonialsSection() {
   return (
     <section id="testimonials" className="bg-white px-6 py-24 md:py-32">
       <div className="container mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
-        >
+        <div className="mb-16 text-center">
           <h2 className="mb-6 text-4xl font-bold md:text-5xl">Ce que nos clients disent</h2>
           <p className="mx-auto max-w-3xl text-xl text-gray-600">
             Des courtiers qui génèrent plus de revenus grâce à ClickOn
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -52,26 +46,30 @@ export function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col rounded-xl border border-gray-200 bg-white p-8 transition-colors hover:border-gray-300"
+              className="flex flex-col rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-gray-300 sm:p-8"
             >
-              <div className="mb-6 flex gap-1">
+              <div className="mb-4 flex gap-1 sm:mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-[#fcb723] text-[#fcb723]" />
+                  <Star key={i} className="h-4 w-4 fill-[#fcb723] text-[#fcb723] sm:h-5 sm:w-5" />
                 ))}
               </div>
 
-              <p className="mb-8 leading-relaxed text-gray-700">{testimonial.content}</p>
+              <p className="mb-6 text-sm leading-relaxed text-gray-700 sm:mb-8 sm:text-base">
+                {testimonial.content}
+              </p>
 
-              <div className="mt-auto flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black font-bold text-white">
+              <div className="mt-auto flex items-center gap-3 sm:gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white sm:h-12 sm:w-12">
                   {testimonial.name
                     .split(" ")
                     .map((n) => n[0])
                     .join("")}
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">{testimonial.role}</div>
+                  <div className="text-sm font-semibold text-gray-900 sm:text-base">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-xs text-gray-600 sm:text-sm">{testimonial.role}</div>
                 </div>
               </div>
             </motion.div>

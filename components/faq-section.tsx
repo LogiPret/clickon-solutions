@@ -36,10 +36,11 @@ export function FAQSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
-        >
+        ></motion.div>
+        <div className="mb-16 text-center">
           <h2 className="mb-6 text-4xl font-bold md:text-5xl">Questions fréquentes</h2>
           <p className="text-xl text-gray-600">Tout ce que vous devez savoir sur ClickOn</p>
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

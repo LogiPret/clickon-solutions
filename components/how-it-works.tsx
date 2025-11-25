@@ -67,18 +67,12 @@ export function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-white px-6 pt-24 md:pt-32">
       <div className="container mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center md:mb-20"
-        >
+        <div className="mb-16 text-center md:mb-20">
           <h2 className="mb-6 text-3xl leading-tight font-bold md:text-5xl lg:text-6xl">
             Donnez-vous les bons outils pour atteindre vos objectifs et approfondir les relations
             clients.
           </h2>
-        </motion.div>
+        </div>
 
         {/* Mobile Carousel */}
         <div className="mb-16 md:hidden">
