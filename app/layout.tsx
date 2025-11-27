@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "ClickOn Solutions - Exploitez la puissance de votre base de données",
   description: "Générez des ventes en automatisant votre base de données avec le Club Privilège",
-  generator: "ClickOn Solutions",
+  generator: "ClickOn Solutions.",
 };
 
 export default function RootLayout({
