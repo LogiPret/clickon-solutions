@@ -38,18 +38,17 @@ export function ExclusiveSection() {
         }}
       />
 
-      <div className="relative container mx-auto max-w-7xl">
+      <div className="relative container mx-auto mb-16 max-w-7xl text-center">
+        <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
+          Un accès limité et <span className="text-primary">exclusif</span>
+        </h2>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
+          className=""
         >
-          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
-            Un accès limité et <span className="text-primary">exclusif</span>
-          </h2>
-
           <div className="mx-auto mb-8">
             <p className="text-lg leading-relaxed text-white/60 md:text-2xl">
               ClickOn est offert à seulement{" "}
@@ -64,7 +63,7 @@ export function ExclusiveSection() {
           </div>
         </motion.div>
 
-        <div className="space-y-8">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
@@ -72,10 +71,10 @@ export function ExclusiveSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-primary flex flex-col gap-6 border-2 border-black p-8 backdrop-blur-sm md:flex-row md:items-center md:gap-8"
+              className="bg-primary flex flex-col gap-6 border-2 border-black p-8 backdrop-blur-sm"
             >
               <div className="shrink-0 text-center md:text-left">
-                <h3 className="mb-3 text-2xl font-bold text-black">{benefit.title}</h3>
+                <h3 className="mb-3 text-center text-2xl font-bold text-black">{benefit.title}</h3>
                 <p className="text-lg leading-relaxed text-black/70">{benefit.description}</p>
               </div>
             </motion.div>

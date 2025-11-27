@@ -24,17 +24,15 @@ const faqs = [
 export function FAQSection() {
   return (
     <section id="faq" className="bg-gray-50 px-6 py-24 md:py-32">
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto mb-16 max-w-4xl text-center">
+        <h2 className="mb-6 text-4xl font-bold md:text-5xl">Questions fréquentes</h2>
+        <p className="mb-16 text-xl text-gray-600">Tout ce que vous devez savoir sur ClickOn</p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
-        >
-          <h2 className="mb-6 text-4xl font-bold md:text-5xl">Questions fréquentes</h2>
-          <p className="text-xl text-gray-600">Tout ce que vous devez savoir sur ClickOn</p>
-        </motion.div>
+        ></motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

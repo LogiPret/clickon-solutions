@@ -63,7 +63,7 @@ export function FloatingCTA() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ duration: 0.3 }}
-          className="pointer-events-none fixed bottom-6 z-50 flex w-full justify-center"
+          className="pointer-events-none fixed bottom-12 z-50 flex w-full justify-center"
         >
           <div className="pointer-events-auto">
             <Button

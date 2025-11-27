@@ -30,14 +30,10 @@ export function ResultsSection() {
   return (
     <section id="results" className="bg-[#fcb723] px-6 py-24 md:py-32">
       <div className="container mx-auto max-w-7xl">
-        <div className="mb-16 text-left sm:text-center">
-          <h2 className="mb-6 text-4xl font-bold md:text-5xl">
+        <div className="mb-16 text-center">
+          <h2 className="mb-6 text-3xl font-bold md:text-5xl">
             Des résultats qui parlent d'eux-mêmes
           </h2>
-          <p className="mx-auto max-w-3xl text-xl text-black">
-            Nos campagnes mensuelles automatisées vous assurent une présence constante auprès de vos
-            clients
-          </p>
         </div>
 
         <div className="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">

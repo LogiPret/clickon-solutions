@@ -49,7 +49,6 @@ export function InteractiveDashboard() {
     {
       label: "Ouvertures (46%)",
       value: ouvertures.toLocaleString(),
-      icon: Mail,
       color: "text-[#fcb723]",
       bgColor: "bg-[#fcb723]/10",
       borderColor: "border-[#fcb723]",
@@ -57,7 +56,6 @@ export function InteractiveDashboard() {
     {
       label: "Engagement (14%)",
       value: engagement.toLocaleString(),
-      icon: MousePointerClick,
       color: "text-[#fcb723]",
       bgColor: "bg-[#fcb723]/10",
       borderColor: "border-[#fcb723]",
@@ -65,7 +63,6 @@ export function InteractiveDashboard() {
     {
       label: "Ventes potentielles (5%)",
       value: potentielVentes.toLocaleString(),
-      icon: MousePointerClick,
       color: "text-[#fcb723]",
       bgColor: "bg-[#fcb723]/10",
       borderColor: "border-[#fcb723]",
@@ -96,20 +93,21 @@ export function InteractiveDashboard() {
           </h2>
         </div>
 
-        <div className="mx-auto mb-8 grid max-w-4xl gap-4 md:mb-12 md:grid-cols-2 md:gap-6">
+        <div className="mx-auto mb-8 grid max-w-4xl grid-cols-2 gap-3 md:mb-12 md:gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            className="h-full"
           >
-            <Card className="flex h-auto flex-col border-2 border-[#fcb723]/30 bg-white p-4 shadow-lg transition-colors md:h-[180px] md:p-6">
+            <Card className="flex h-full flex-col justify-between border-2 border-[#fcb723]/30 bg-white p-3 shadow-lg transition-colors md:p-6">
               <Label
                 htmlFor="client-count"
-                className="mb-2 block flex items-center gap-2 text-sm font-semibold md:mb-3 md:text-base"
+                className="mb-2 flex items-center gap-1.5 text-xs font-semibold md:mb-3 md:gap-2 md:text-base"
               >
-                <Users className="h-4 w-4 text-[#fcb723] md:h-5 md:w-5" />
-                Nombre de clients
+                <Users className="h-3.5 w-3.5 shrink-0 text-[#fcb723] md:h-5 md:w-5" />
+                <span>Nombre de clients</span>
               </Label>
               <Input
                 id="client-count"
@@ -118,7 +116,7 @@ export function InteractiveDashboard() {
                 max="100000"
                 value={clientCount}
                 onChange={(e) => handleClientChange(e.target.value)}
-                className="h-10 border-2 border-[#fcb723]/30 text-lg font-bold focus:border-[#fcb723] md:h-12 md:text-xl"
+                className="mt-auto h-9 border-2 border-[#fcb723]/30 text-base font-bold focus:border-[#fcb723] md:h-12 md:text-xl"
               />
             </Card>
           </motion.div>
@@ -128,17 +126,18 @@ export function InteractiveDashboard() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="h-full"
           >
-            <Card className="flex h-auto flex-col border-2 border-[#fcb723]/30 bg-white p-4 shadow-lg transition-colors md:h-[180px] md:p-6">
+            <Card className="flex h-full flex-col justify-between border-2 border-[#fcb723]/30 bg-white p-3 shadow-lg transition-colors md:p-6">
               <Label
                 htmlFor="avg-commission"
-                className="mb-2 block flex items-center gap-2 text-sm font-semibold md:mb-3 md:text-base"
+                className="mb-2 flex items-center gap-1.5 text-xs font-semibold md:mb-3 md:gap-2 md:text-base"
               >
-                <DollarSign className="h-4 w-4 text-[#fcb723] md:h-5 md:w-5" />
-                Commission moyenne
+                <DollarSign className="h-3.5 w-3.5 shrink-0 text-[#fcb723] md:h-5 md:w-5" />
+                <span>Commission moyenne</span>
               </Label>
-              <div className="relative">
-                <span className="text-muted-foreground absolute top-1/2 left-3 -translate-y-1/2 text-lg font-bold md:left-4 md:text-xl">
+              <div className="relative mt-auto">
+                <span className="text-muted-foreground absolute top-1/2 left-2.5 -translate-y-1/2 text-base font-bold md:left-4 md:text-xl">
                   $
                 </span>
                 <Input
@@ -148,41 +147,36 @@ export function InteractiveDashboard() {
                   max="1000000"
                   value={avgCommission}
                   onChange={(e) => handleCommissionChange(e.target.value)}
-                  className="h-10 border-2 border-[#fcb723]/30 pl-6 text-lg font-bold focus:border-[#fcb723] md:h-12 md:pl-8 md:text-xl"
+                  className="h-9 border-2 border-[#fcb723]/30 pl-6 text-base font-bold focus:border-[#fcb723] md:h-12 md:pl-8 md:text-xl"
                 />
               </div>
             </Card>
           </motion.div>
         </div>
 
-        <div className="mx-auto mb-8 grid max-w-5xl grid-cols-2 gap-3 md:grid-cols-3 md:gap-6">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              className={index === 0 ? "col-span-2 md:col-span-1" : ""}
-            >
-              <Card
-                className={`border-2 bg-white p-3 shadow-lg ${stat.borderColor} flex h-full flex-col justify-center transition-all hover:-translate-y-1 hover:shadow-xl md:h-[140px] md:p-6`}
-              >
-                <div className="flex items-center gap-3 md:gap-4">
-                  <div className={`rounded-xl p-2 md:p-3 ${stat.bgColor}`}>
-                    <stat.icon className={`h-5 w-5 md:h-6 md:w-6 ${stat.color}`} />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-muted-foreground mb-0.5 text-xs font-medium md:mb-1 md:text-sm">
-                      {stat.label}
-                    </p>
-                    <p className={`text-xl font-bold md:text-3xl ${stat.color}`}>{stat.value}</p>
-                  </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto mb-8 max-w-5xl"
+        >
+          <Card className="border-2 border-[#fcb723]/30 bg-white p-3 shadow-lg md:p-6">
+            <div className="grid h-22 grid-cols-3 divide-x divide-[#fcb723]/20 md:h-32">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="flex h-full flex-col items-center justify-between px-2 py-2 text-center md:px-6 md:py-4"
+                >
+                  <p className="text-muted-foreground text-xs leading-tight font-medium md:text-sm">
+                    {stat.label}
+                  </p>
+                  <p className={`text-2xl font-bold md:text-5xl ${stat.color}`}>{stat.value}</p>
                 </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+              ))}
+            </div>
+          </Card>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
