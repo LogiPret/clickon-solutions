@@ -32,7 +32,7 @@ export function DemoSection() {
   }, []);
 
   return (
-    <section id="demo" className="bg-black px-6 py-24 text-white md:py-32">
+    <section id="demo" className="bg-black px-6 py-16 text-white md:py-20">
       <div className="container mx-auto max-w-6xl">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <motion.div
@@ -44,7 +44,8 @@ export function DemoSection() {
             <h2 className="mb-6 text-4xl font-bold md:text-5xl">Prêt à générer plus de leads ?</h2>
 
             <p className="mb-10 text-xl leading-relaxed text-gray-300">
-              Découvrez comment ClickOn peut transformer votre base de clients en machine à revenus.
+              Discutez avec un spécialiste en fidélisation pour voir comment ClickOn peut
+              transformer vos clients en revenus.
             </p>
 
             <ul className="mb-10 space-y-4">

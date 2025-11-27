@@ -1,12 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { CheckCircle2 } from "lucide-react";
 
 const faqs = [
   {
@@ -22,7 +17,7 @@ const faqs = [
   {
     question: "Est-ce que ClickOn fonctionne avec mon CRM actuel ?",
     answer:
-      "Oui ! ClickOn s'intègre facilement avec les principaux CRM du marché. Vous pouvez aussi importer vos contacts via un simple fichier Excel.",
+      "Oui ! ClickOn s'intègre facilement avec les principaux CRM du marché. Vous pouvez aussi importer vos contacts via un simple fichier Excel ou CSV.",
   },
 ];
 
@@ -36,11 +31,10 @@ export function FAQSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
-        ></motion.div>
-        <div className="mb-16 text-center">
+        >
           <h2 className="mb-6 text-4xl font-bold md:text-5xl">Questions fréquentes</h2>
           <p className="text-xl text-gray-600">Tout ce que vous devez savoir sur ClickOn</p>
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,18 +43,17 @@ export function FAQSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div className="rounded-xl border border-gray-200 bg-white p-8">
-            <Accordion type="single" collapsible className="w-full">
+            <div className="space-y-8">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-gray-200">
-                  <AccordionTrigger className="py-6 text-left text-lg font-semibold transition-colors hover:text-[#fcb723]">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-6 leading-relaxed text-gray-600">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
+                <div key={index} className="flex gap-4">
+                  <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-[#fcb723]" />
+                  <div>
+                    <h3 className="mb-2 text-lg font-semibold text-gray-900">{faq.question}</h3>
+                    <p className="leading-relaxed text-gray-600">{faq.answer}</p>
+                  </div>
+                </div>
               ))}
-            </Accordion>
+            </div>
           </div>
         </motion.div>
       </div>

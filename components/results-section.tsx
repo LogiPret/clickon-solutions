@@ -5,25 +5,21 @@ import { TrendingUp, Mail, MousePointerClick, Zap } from "lucide-react";
 
 const stats = [
   {
-    icon: Mail,
     value: "46%",
     label: "Taux d'ouverture",
     description: "Bien au-dessus de la moyenne",
   },
   {
-    icon: MousePointerClick,
     value: "14%",
     label: "Taux d'engagement",
     description: "Vos clients interagissent",
   },
   {
-    icon: TrendingUp,
-    value: "2-5K$",
-    label: "Tirages mensuels",
-    description: "Pour attirer l'attention",
+    value: "150+",
+    label: "Courtiers Actifs",
+    description: "Service personnalisé et dédié",
   },
   {
-    icon: Zap,
     value: "100%",
     label: "Automatisé",
     description: "Aucun effort de votre part",
@@ -54,9 +50,6 @@ export function ResultsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-black md:mb-6 md:h-16 md:w-16">
-                <stat.icon className="h-6 w-6 text-white md:h-8 md:w-8" />
-              </div>
               <div className="mb-2 text-3xl font-bold md:mb-3 md:text-5xl">{stat.value}</div>
               <div className="mb-1 text-sm font-semibold md:mb-2 md:text-lg">{stat.label}</div>
               <div className="text-xs text-black md:text-sm">{stat.description}</div>

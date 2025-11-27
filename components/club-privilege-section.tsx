@@ -87,7 +87,7 @@ export function ClubPrivilegeSection() {
                 transition={{ delay: 0.3 }}
               >
                 <Button
-                  className="group h-14 rounded-full bg-[#C5A059] px-8 text-lg font-semibold text-black hover:bg-[#d4b06a]"
+                  className="group h-14 rounded-full bg-[#C5A059] px-8 text-lg font-semibold text-black hover:bg-[#ffd480]"
                   size="lg"
                   onClick={() =>
                     window.open("https://app.brokermail.ca/h/t/5911F0FB83917A63", "_blank")

@@ -5,7 +5,8 @@
 
 :root {
   /* Brand Colors - Black and Yellow palette only */
-  --primary: 45 98% 57%; /* Yellow #FCB723 */
+  --theme: #fcb723; /* Theme color #FCB723 */
+  --primary: oklch(0.8228 0.1633 79.79); /* Yellow #FCB723 */
   --primary-foreground: 0 0% 0%; /* Black text on yellow */
 
   --secondary: 0 0% 0%; /* Black */

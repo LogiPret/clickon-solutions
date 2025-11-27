@@ -32,19 +32,71 @@ export function HeroSection() {
               </div>
 
               <h1 className="mb-6 text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                Votre base de données travaille pour vous{" "}
-                <span className="text-[#fcb723]">pendant que vous closez.</span>
+                Les CRM gèrent vos prospects <span className="text-[#fcb723]">ClickOn</span> ravive
+                vos clients
               </h1>
 
               <p className="mb-8 max-w-xl text-lg leading-relaxed text-gray-300 md:mb-10 md:text-xl">
-                Le Club Privilège envoie automatiquement des bulletins personnalisés à vos anciens
-                clients. Résultat ? 46% d'ouverture et 14% d'engagement. Sans lever le petit doigt.
+                Branchez ClickOn à votre CRM et laissez-le relancer, automatiquement, les clients
+                que vous aviez perdus de vue.
               </p>
             </div>
-
+            <div className="mb-8 px-[5vw] lg:hidden">
+              <div
+                className="relative flex w-full items-center justify-center"
+                style={{
+                  height: "clamp(200px, 40vw, 350px)",
+                  perspective: "1200px",
+                  perspectiveOrigin: "center center",
+                }}
+              >
+                {/* Dashboard 4 - Left side, rotated to face right (inward) */}
+                <div
+                  className="absolute left-0 z-10"
+                  style={{
+                    width: "clamp(55%, 60%, 65%)",
+                    transform: "rotateY(20deg) translateX(-5%)",
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <Image
+                    src="/dashboard_4.png"
+                    alt="Dashboard ClickOn"
+                    width={400}
+                    height={300}
+                    className="h-auto w-full rounded-lg shadow-2xl"
+                    style={{
+                      filter:
+                        "drop-shadow(0 15px 35px rgba(0, 0, 0, 0.3)) drop-shadow(0 25px 45px rgba(0, 0, 0, 0.4))",
+                    }}
+                  />
+                </div>
+                {/* Dashboard 2 - Right side, rotated to face left (inward), overlapping */}
+                <div
+                  className="absolute right-0 z-20"
+                  style={{
+                    width: "clamp(55%, 60%, 65%)",
+                    transform: "rotateY(-20deg) translateX(5%)",
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <Image
+                    src="/dashboard_2.png"
+                    alt="Dashboard ClickOn"
+                    width={400}
+                    height={300}
+                    className="h-auto w-full rounded-lg shadow-2xl"
+                    style={{
+                      filter:
+                        "drop-shadow(0 15px 35px rgba(0, 0, 0, 0.3)) drop-shadow(0 25px 45px rgba(0, 0, 0, 0.4))",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
             <Button
               size="lg"
-              className="h-14 w-full bg-[#fcb723] px-8 text-base font-medium text-black hover:bg-[#e5a520] md:w-auto"
+              className="h-14 w-full bg-[#fcb723] px-8 text-base font-medium text-black hover:bg-[#e5a520]"
               onClick={scrollToDemo}
             >
               Voir comment ça marche
@@ -58,14 +110,55 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative hidden md:block"
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-              <Image
-                src="/dashboard.png"
-                alt="Interface ClickOn"
-                width={800}
-                height={600}
-                className="h-auto w-full"
-              />
+            <div className="order-1 hidden h-full items-center justify-center lg:order-2 lg:flex">
+              <div
+                className="relative flex h-[500px] w-full items-center justify-center"
+                style={{
+                  perspective: "1500px",
+                  perspectiveOrigin: "center center",
+                }}
+              >
+                {/* Dashboard 4 - Left side, rotated to face right (inward) */}
+                <div
+                  className="absolute left-0 z-10 w-[65%]"
+                  style={{
+                    transform: "rotateY(30deg) translateX(-5%)",
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <Image
+                    src="/dashboard_4.png"
+                    alt="Dashboard ClickOn"
+                    width={500}
+                    height={375}
+                    className="h-auto w-full rounded-lg shadow-2xl"
+                    style={{
+                      filter:
+                        "drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))",
+                    }}
+                  />
+                </div>
+                {/* Dashboard 2 - Right side, rotated to face left (inward), overlapping */}
+                <div
+                  className="absolute right-0 z-20 w-[65%]"
+                  style={{
+                    transform: "rotateY(-30deg) translateX(5%)",
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  <Image
+                    src="/dashboard_2.png"
+                    alt="Dashboard ClickOn"
+                    width={500}
+                    height={375}
+                    className="h-auto w-full rounded-lg shadow-2xl"
+                    style={{
+                      filter:
+                        "drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))",
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

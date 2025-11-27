@@ -8,51 +8,63 @@ import { Users, DollarSign, TrendingUp, Mail, MousePointerClick } from "lucide-r
 import { motion } from "framer-motion";
 
 export function InteractiveDashboard() {
-  const [clientCount, setClientCount] = useState(500);
-  const [avgCommission, setAvgCommission] = useState(2000);
+  const [clientCount, setClientCount] = useState("500");
+  const [avgCommission, setAvgCommission] = useState("2000");
 
   const openRate = 0.46; // 46%
   const engagementRate = 0.14; // 14%
 
-  const totalClients = clientCount;
-  const ouvertures = Math.round(clientCount * openRate);
-  const engagement = Math.round(clientCount * engagementRate);
-  const potentielVentes = 0.05 * engagement * avgCommission;
+  const clientNum = Number.parseInt(clientCount) || 0;
+  const commissionNum = Number.parseInt(avgCommission) || 0;
+
+  const ouvertures = Math.round(clientNum * openRate);
+  const engagement = Math.round(ouvertures * engagementRate);
+
+  const potentielVentes = Math.round(0.05 * engagement);
+  const potentielRevenu = potentielVentes * commissionNum;
 
   const handleClientChange = (value: string) => {
-    const num = Number.parseInt(value) || 0;
-    if (num >= 0 && num <= 100000) {
-      setClientCount(num);
+    if (value === "") {
+      setClientCount("");
+      return;
+    }
+    const num = Number.parseInt(value);
+    if (!isNaN(num) && num >= 0 && num <= 100000) {
+      setClientCount(value);
     }
   };
 
   const handleCommissionChange = (value: string) => {
-    const num = Number.parseInt(value) || 0;
-    if (num >= 0 && num <= 1000000) {
-      setAvgCommission(num);
+    if (value === "") {
+      setAvgCommission("");
+      return;
+    }
+    const num = Number.parseInt(value);
+    if (!isNaN(num) && num >= 0 && num <= 1000000) {
+      setAvgCommission(value);
     }
   };
 
   const stats = [
     {
-      label: "Clients totaux",
-      value: totalClients.toLocaleString(),
-      icon: Users,
+      label: "Ouvertures (46%)",
+      value: ouvertures.toLocaleString(),
+      icon: Mail,
       color: "text-[#fcb723]",
       bgColor: "bg-[#fcb723]/10",
       borderColor: "border-[#fcb723]",
     },
     {
-      label: "Ouvertures (46%)",
-      value: ouvertures.toLocaleString(),
-      icon: Mail,
-      color: "text-black",
-      bgColor: "bg-gray-100",
-      borderColor: "border-gray-200",
-    },
-    {
       label: "Engagement (14%)",
       value: engagement.toLocaleString(),
+      icon: MousePointerClick,
+      color: "text-[#fcb723]",
+      bgColor: "bg-[#fcb723]/10",
+      borderColor: "border-[#fcb723]",
+    },
+    {
+      label: "Ventes potentielles (5%)",
+      value: potentielVentes.toLocaleString(),
       icon: MousePointerClick,
       color: "text-[#fcb723]",
       bgColor: "bg-[#fcb723]/10",
@@ -63,7 +75,7 @@ export function InteractiveDashboard() {
   return (
     <section
       id="interactive-dashboard"
-      className="relative bg-gradient-to-b from-white via-gray-50 to-white py-20"
+      className="relative bg-gradient-to-b from-white via-gray-50 to-white pt-24 pb-12"
     >
       <div
         className="absolute inset-0"
@@ -79,11 +91,9 @@ export function InteractiveDashboard() {
       <div className="relative z-10 container mx-auto max-w-7xl px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">
-            Calculez votre <span className="text-[#fcb723]">potentiel</span>
+            Calculez comment <span className="text-[#fcb723]">ClickOn</span> peut generer plus
+            d'engagements, plus de <span className="text-[#fcb723]">revenus</span>
           </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Découvrez combien de ventes additionnelles ClickOn peut générer pour votre entreprise
-          </p>
         </div>
 
         <div className="mx-auto mb-8 grid max-w-4xl gap-4 md:mb-12 md:grid-cols-2 md:gap-6">
@@ -93,7 +103,7 @@ export function InteractiveDashboard() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Card className="flex h-auto flex-col border-2 border-[#fcb723]/30 bg-white p-4 shadow-lg transition-colors hover:border-[#fcb723] md:h-[180px] md:p-6">
+            <Card className="flex h-auto flex-col border-2 border-[#fcb723]/30 bg-white p-4 shadow-lg transition-colors md:h-[180px] md:p-6">
               <Label
                 htmlFor="client-count"
                 className="mb-2 block flex items-center gap-2 text-sm font-semibold md:mb-3 md:text-base"
@@ -119,7 +129,7 @@ export function InteractiveDashboard() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Card className="flex h-auto flex-col border-2 border-[#fcb723]/30 bg-white p-4 shadow-lg transition-colors hover:border-[#fcb723] md:h-[180px] md:p-6">
+            <Card className="flex h-auto flex-col border-2 border-[#fcb723]/30 bg-white p-4 shadow-lg transition-colors md:h-[180px] md:p-6">
               <Label
                 htmlFor="avg-commission"
                 className="mb-2 block flex items-center gap-2 text-sm font-semibold md:mb-3 md:text-base"
@@ -156,7 +166,7 @@ export function InteractiveDashboard() {
               className={index === 0 ? "col-span-2 md:col-span-1" : ""}
             >
               <Card
-                className={`border-2 bg-white p-3 shadow-lg ${stat.borderColor} flex h-auto flex-col justify-center transition-all hover:-translate-y-1 hover:shadow-xl md:h-[140px] md:p-6`}
+                className={`border-2 bg-white p-3 shadow-lg ${stat.borderColor} flex h-full flex-col justify-center transition-all hover:-translate-y-1 hover:shadow-xl md:h-[140px] md:p-6`}
               >
                 <div className="flex items-center gap-3 md:gap-4">
                   <div className={`rounded-xl p-2 md:p-3 ${stat.bgColor}`}>
@@ -182,7 +192,6 @@ export function InteractiveDashboard() {
           className="mx-auto max-w-3xl"
         >
           <Card className="relative overflow-hidden border-0 bg-black shadow-2xl">
-            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
             <div className="relative p-6 text-center text-white md:p-12">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#fcb723] px-3 py-1.5 text-black md:px-4 md:py-2">
                 <TrendingUp className="h-4 w-4 md:h-5 md:w-5" />
@@ -192,13 +201,13 @@ export function InteractiveDashboard() {
                 Ventes additionnelles potentielles
               </h3>
               <motion.div
-                key={potentielVentes}
+                key={potentielRevenu}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, type: "spring" }}
                 className="mb-4 text-4xl font-bold text-[#fcb723] md:mb-6 md:text-7xl"
               >
-                {potentielVentes.toLocaleString("fr-CA", {
+                {potentielRevenu.toLocaleString("fr-CA", {
                   style: "currency",
                   currency: "CAD",
                   minimumFractionDigits: 0,
@@ -206,7 +215,7 @@ export function InteractiveDashboard() {
               </motion.div>
               <p className="mx-auto mb-6 max-w-xl text-sm text-white/80 md:mb-8 md:text-lg">
                 Basé sur 5% des engagements par mois à{" "}
-                {avgCommission.toLocaleString("fr-CA", {
+                {commissionNum.toLocaleString("fr-CA", {
                   style: "currency",
                   currency: "CAD",
                   minimumFractionDigits: 0,

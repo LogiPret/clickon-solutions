@@ -35,7 +35,22 @@ export function FloatingCTA() {
   }, []);
 
   const scrollToDemo = () => {
-    document.getElementById("demo")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const element = document.getElementById("demo");
+    if (!element) return;
+
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    } else {
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   };
 
   const isVisible = isScrolled && !isDemoVisible;
@@ -54,7 +69,7 @@ export function FloatingCTA() {
             <Button
               size="lg"
               onClick={scrollToDemo}
-              className="rounded-full border border-black bg-[#fcb723] px-6 font-semibold text-black shadow-2xl shadow-[#fcb723]/50 hover:bg-[#e5a520]"
+              className="rounded-full border border-black bg-[#fcb723] px-6 text-2xl font-semibold text-black shadow-xl shadow-[#000000]/30 hover:bg-[#e5a520]"
             >
               <Calendar className="mr-2 h-5 w-5" />
               Réserver une démo

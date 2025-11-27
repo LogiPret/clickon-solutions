@@ -4,6 +4,7 @@ import { HowItWorks } from "@/components/how-it-works";
 import { InteractiveDashboard } from "@/components/interactive-dashboard";
 import { ResultsSection } from "@/components/results-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
+import { ExclusiveSection } from "@/components/exclusive-section";
 import { ClubPrivilegeSection } from "@/components/club-privilege-section";
 import { DemoSection } from "@/components/demo-section";
 import { FAQSection } from "@/components/faq-section";
@@ -19,6 +20,7 @@ export default function Home() {
         <HowItWorks />
         <ResultsSection />
         <InteractiveDashboard />
+        <ExclusiveSection />
         <TestimonialsSection />
         <ClubPrivilegeSection />
         <DemoSection />

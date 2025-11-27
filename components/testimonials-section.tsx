@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -10,26 +11,21 @@ const testimonials = [
     content:
       "J'ai été agréablement surpris de recevoir deux références sérieuses dès le premier envoi. Je m'attendais à ce que cela prenne quatre à cinq mois avant de voir des résultats de ce programme.",
     rating: 5,
+    image: "/mz-pic.jpg",
   },
   {
     name: "Mark-Anthony Barbieri",
     role: "Courtier Hypothécaire",
     content:
-      "C'est une stratégie géniale pour obtenir la réponse du client. Rien que cet élément déclenche une conversation avec mes clients, car je prends toujours le temps de leur souhaiter 'Bonne chance'.",
+      "J’ai très vite compris la valeur de cette initiative. C’est une stratégie géniale pour obtenir la réponse du client à la ‘question du mois’. Rien que cet élément déclenche une conversation avec mes clients, car je prends toujours le temps de leur souhaiter ‘Bonne chance’ pour le concours. Ce simple échange (avec un rappel de ‘me contacter pour toute question hypothécaire’) génère des ventes. Même après plusieurs années dans l’industrie… il n’est jamais trop tard pour innover !",
     rating: 5,
-  },
-  {
-    name: "Mark-Anthony Barbieri",
-    role: "Courtier Hypothécaire",
-    content:
-      "Ce simple échange génère des ventes. Même après plusieurs années dans l'industrie… il n'est jamais trop tard pour innover !",
-    rating: 5,
+    image: "/mb-pic.jpg",
   },
 ];
 
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" className="bg-white px-6 py-24 md:py-32">
+    <section id="testimonials" className="bg-white px-6 py-12 pt-24 md:py-20 md:pt-32">
       <div className="container mx-auto max-w-7xl">
         <div className="mb-16 text-center">
           <h2 className="mb-6 text-4xl font-bold md:text-5xl">Ce que nos clients disent</h2>
@@ -59,11 +55,13 @@ export function TestimonialsSection() {
               </p>
 
               <div className="mt-auto flex items-center gap-3 sm:gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white sm:h-12 sm:w-12">
-                  {testimonial.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                <div className="relative h-10 w-10 overflow-hidden rounded-full bg-black sm:h-12 sm:w-12">
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-gray-900 sm:text-base">
