@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 export function InteractiveDashboard() {
   const [clientCount, setClientCount] = useState("500");
-  const [avgCommission, setAvgCommission] = useState("2000");
+  const [avgCommission, setAvgCommission] = useState("9000");
 
   const openRate = 0.46; // 46%
   const engagementRate = 0.14; // 14%
