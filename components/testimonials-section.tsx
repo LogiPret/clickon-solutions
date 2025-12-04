@@ -34,7 +34,7 @@ export function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 md:gap-8 lg:flex lg:justify-center">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -42,7 +42,7 @@ export function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-gray-300 sm:p-8"
+              className="flex max-w-md flex-col rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-gray-300 sm:p-8"
             >
               <div className="mb-4 flex gap-1 sm:mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (

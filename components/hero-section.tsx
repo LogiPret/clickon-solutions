@@ -7,7 +7,22 @@ import Image from "next/image";
 
 export function HeroSection() {
   const scrollToDemo = () => {
-    document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById("demo");
+    if (!element) return;
+
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    } else {
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   };
 
   return (
