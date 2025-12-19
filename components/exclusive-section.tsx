@@ -1,32 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Users, Headphones } from "lucide-react";
-
-const benefits = [
-  {
-    icon: Shield,
-    title: "Edge compétitif dans votre région",
-    description: (
-      <>
-        Démarquez-vous parmi les{" "}
-        <span className="text-center text-xl font-bold">
-          <br className="md:hidden" /> 17 000 courtiers
-          <br className="md:hidden" />
-        </span>{" "}
-        du Québec avec un accès exclusif à notre plateforme.
-      </>
-    ),
-  },
-  {
-    icon: Headphones,
-    title: "Support personnalisé",
-    description:
-      "Bénéficiez d'un accompagnement dédié tout au long de votre utilisation pour personnaliser votre service.",
-  },
-];
+import { Shield, Headphones } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function ExclusiveSection() {
+  const t = useTranslations("exclusive");
+
+  const benefits = [
+    {
+      icon: Shield,
+      title: t("benefits.edge.title"),
+      description: (
+        <>
+          {t("benefits.edge.description")}{" "}
+          <span className="text-center text-xl font-bold">
+            <br className="md:hidden" /> {t("benefits.edge.brokerCount")}
+            <br className="md:hidden" />
+          </span>{" "}
+          {t("benefits.edge.descriptionEnd")}
+        </>
+      ),
+    },
+    {
+      icon: Headphones,
+      title: t("benefits.support.title"),
+      description: t("benefits.support.description"),
+    },
+  ];
+
   return (
     <section className="relative bg-black px-6 py-24 md:py-32">
       {/* Dotted background pattern */}
@@ -40,7 +42,7 @@ export function ExclusiveSection() {
 
       <div className="relative container mx-auto mb-16 max-w-7xl text-center">
         <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
-          Un accès limité et <span className="text-primary">exclusif</span>
+          {t("title")} <span className="text-primary">{t("titleHighlight")}</span>
         </h2>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,15 +53,15 @@ export function ExclusiveSection() {
         >
           <div className="mx-auto mb-8">
             <p className="text-lg leading-relaxed text-white/60 md:text-2xl">
-              ClickOn est offert à seulement{" "}
+              {t("subtitle")}{" "}
               <span className="text-2xl font-bold text-white md:text-3xl">
                 {" "}
-                <br className="md:hidden" /> 300 courtiers
+                <br className="md:hidden" /> {t("brokerCount")}
                 <br className="md:hidden" />
               </span>{" "}
-              immobiliers et hypothécaires au Québec.
+              {t("subtitleEnd")}
             </p>
-            <p className="mt-8 text-xl text-white">Cette limite ne changera jamais</p>
+            <p className="mt-8 text-xl text-white">{t("limitNote")}</p>
           </div>
         </motion.div>
 

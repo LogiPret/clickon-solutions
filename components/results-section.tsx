@@ -1,39 +1,39 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, Mail, MousePointerClick, Zap } from "lucide-react";
-
-const stats = [
-  {
-    value: "46%",
-    label: "Taux d'ouverture",
-    description: "Bien au-dessus de la moyenne",
-  },
-  {
-    value: "14%",
-    label: "Taux d'engagement",
-    description: "Vos clients interagissent",
-  },
-  {
-    value: "150+",
-    label: "Courtiers Actifs",
-    description: "Service personnalisé et dédié",
-  },
-  {
-    value: "100%",
-    label: "Automatisé",
-    description: "Aucun effort de votre part",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function ResultsSection() {
+  const t = useTranslations("results");
+
+  const stats = [
+    {
+      value: t("stats.openRate.value"),
+      label: t("stats.openRate.label"),
+      description: t("stats.openRate.description"),
+    },
+    {
+      value: t("stats.engagementRate.value"),
+      label: t("stats.engagementRate.label"),
+      description: t("stats.engagementRate.description"),
+    },
+    {
+      value: t("stats.activeBrokers.value"),
+      label: t("stats.activeBrokers.label"),
+      description: t("stats.activeBrokers.description"),
+    },
+    {
+      value: t("stats.automated.value"),
+      label: t("stats.automated.label"),
+      description: t("stats.automated.description"),
+    },
+  ];
+
   return (
     <section id="results" className="bg-[#fcb723] px-6 py-24 md:py-32">
       <div className="container mx-auto max-w-7xl">
         <div className="mb-16 text-center">
-          <h2 className="mb-6 text-3xl font-bold md:text-5xl">
-            Des résultats qui parlent d'eux-mêmes
-          </h2>
+          <h2 className="mb-6 text-3xl font-bold md:text-5xl">{t("title")}</h2>
         </div>
 
         <div className="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">

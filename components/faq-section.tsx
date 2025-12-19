@@ -2,31 +2,31 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-
-const faqs = [
-  {
-    question: "Comment ClickOn contacte-t-il mes anciens clients ?",
-    answer:
-      "ClickOn utilise une combinaison d'emails personnalisés, de SMS et d'appels automatisés selon vos préférences. Notre IA analyse le meilleur moment et le meilleur canal pour chaque client.",
-  },
-  {
-    question: "Combien de temps avant de voir des résultats ?",
-    answer:
-      "La plupart de nos clients reçoivent leurs premiers leads qualifiés dans les 7 à 14 jours suivant l'activation. Les résultats s'améliorent continuellement avec le temps.",
-  },
-  {
-    question: "Est-ce que ClickOn fonctionne avec mon CRM actuel ?",
-    answer:
-      "Oui ! ClickOn s'intègre facilement avec les principaux CRM du marché. Vous pouvez aussi importer vos contacts via un simple fichier Excel ou CSV.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function FAQSection() {
+  const t = useTranslations("faq");
+
+  const faqs = [
+    {
+      question: t("items.contact.question"),
+      answer: t("items.contact.answer"),
+    },
+    {
+      question: t("items.results.question"),
+      answer: t("items.results.answer"),
+    },
+    {
+      question: t("items.crm.question"),
+      answer: t("items.crm.answer"),
+    },
+  ];
+
   return (
     <section id="faq" className="bg-gray-50 px-6 py-24 md:py-32">
       <div className="container mx-auto mb-16 max-w-4xl text-center">
-        <h2 className="mb-6 text-4xl font-bold md:text-5xl">Questions fréquentes</h2>
-        <p className="mb-16 text-xl text-gray-600">Tout ce que vous devez savoir sur ClickOn</p>
+        <h2 className="mb-6 text-4xl font-bold md:text-5xl">{t("title")}</h2>
+        <p className="mb-16 text-xl text-gray-600">{t("subtitle")}</p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

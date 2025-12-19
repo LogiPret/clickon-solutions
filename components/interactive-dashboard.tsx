@@ -6,10 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Users, DollarSign, TrendingUp, Mail, MousePointerClick } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export function InteractiveDashboard() {
   const [clientCount, setClientCount] = useState("500");
   const [avgCommission, setAvgCommission] = useState("9000");
+  const t = useTranslations("dashboard");
 
   const openRate = 0.46; // 46%
   const engagementRate = 0.14; // 14%
@@ -47,21 +49,21 @@ export function InteractiveDashboard() {
 
   const stats = [
     {
-      label: "Ouvertures (46%)",
+      label: t("openings"),
       value: ouvertures.toLocaleString(),
       color: "text-[#fcb723]",
       bgColor: "bg-[#fcb723]/10",
       borderColor: "border-[#fcb723]",
     },
     {
-      label: "Engagement (14%)",
+      label: t("engagement"),
       value: engagement.toLocaleString(),
       color: "text-[#fcb723]",
       bgColor: "bg-[#fcb723]/10",
       borderColor: "border-[#fcb723]",
     },
     {
-      label: "Ventes potentielles (5%)",
+      label: t("potentialSales"),
       value: potentielVentes.toLocaleString(),
       color: "text-[#fcb723]",
       bgColor: "bg-[#fcb723]/10",
@@ -88,8 +90,8 @@ export function InteractiveDashboard() {
       <div className="relative z-10 container mx-auto max-w-7xl px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">
-            Calculez comment <span className="text-[#fcb723]">ClickOn</span> peut generer plus
-            d'engagements, plus de <span className="text-[#fcb723]">revenus</span>
+            {t("title")} <span className="text-[#fcb723]">{t("titleHighlight")}</span>{" "}
+            {t("titleMiddle")} <span className="text-[#fcb723]">{t("titleEnd")}</span>
           </h2>
         </div>
 
@@ -107,7 +109,7 @@ export function InteractiveDashboard() {
                 className="mb-2 flex items-center gap-1.5 text-xs font-semibold md:mb-3 md:gap-2 md:text-base"
               >
                 <Users className="h-3.5 w-3.5 shrink-0 text-[#fcb723] md:h-5 md:w-5" />
-                <span>Nombre de clients</span>
+                <span>{t("clientCount")}</span>
               </Label>
               <Input
                 id="client-count"
@@ -134,7 +136,7 @@ export function InteractiveDashboard() {
                 className="mb-2 flex items-center gap-1.5 text-xs font-semibold md:mb-3 md:gap-2 md:text-base"
               >
                 <DollarSign className="h-3.5 w-3.5 shrink-0 text-[#fcb723] md:h-5 md:w-5" />
-                <span>Commission moyenne</span>
+                <span>{t("avgCommission")}</span>
               </Label>
               <div className="relative mt-auto">
                 <span className="text-muted-foreground absolute top-1/2 left-2.5 -translate-y-1/2 text-base font-bold md:left-4 md:text-xl">
@@ -189,11 +191,9 @@ export function InteractiveDashboard() {
             <div className="relative p-6 text-center text-white md:p-12">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#fcb723] px-3 py-1.5 text-black md:px-4 md:py-2">
                 <TrendingUp className="h-4 w-4 md:h-5 md:w-5" />
-                <span className="text-xs font-semibold md:text-sm">Potentiel de revenus</span>
+                <span className="text-xs font-semibold md:text-sm">{t("revenueLabel")}</span>
               </div>
-              <h3 className="mb-2 text-xl font-bold md:mb-3 md:text-3xl">
-                Ventes additionnelles potentielles
-              </h3>
+              <h3 className="mb-2 text-xl font-bold md:mb-3 md:text-3xl">{t("additionalSales")}</h3>
               <motion.div
                 key={potentielRevenu}
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -208,13 +208,13 @@ export function InteractiveDashboard() {
                 })}
               </motion.div>
               <p className="mx-auto mb-6 max-w-xl text-sm text-white/80 md:mb-8 md:text-lg">
-                Basé sur 5% des engagements par mois à{" "}
+                {t("basedOn")}{" "}
                 {commissionNum.toLocaleString("fr-CA", {
                   style: "currency",
                   currency: "CAD",
                   minimumFractionDigits: 0,
                 })}{" "}
-                par vente
+                {t("perSale")}
               </p>
             </div>
           </Card>

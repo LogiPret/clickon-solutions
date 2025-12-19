@@ -2,6 +2,8 @@ import type React from "react";
 import type { Metadata } from "next";
 import { DM_Sans, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -47,15 +49,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="fr" className={`${dmSans.variable} ${spaceGrotesk.variable}`}>
+    <html lang={locale} className={`${dmSans.variable} ${spaceGrotesk.variable}`}>
       <body className={`font-sans antialiased`}>
-        {children}
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         <Analytics />
       </body>
     </html>

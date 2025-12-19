@@ -6,9 +6,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { LanguageToggle } from "@/components/language-toggle";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const t = useTranslations("header");
 
   const scrollToDemo = () => {
     setMobileMenuOpen(false);
@@ -74,29 +77,29 @@ export function Header() {
             onClick={() => scrollToSection("demo")}
             className="text-sm font-medium text-gray-700 transition-colors hover:text-black"
           >
-            Démo
+            {t("demo")}
           </button>
           <button
             onClick={() => scrollToSection("results")}
             className="text-sm font-medium text-gray-700 transition-colors hover:text-black"
           >
-            Résultats
+            {t("results")}
           </button>
           <button
             onClick={() => scrollToSection("testimonials")}
             className="text-sm font-medium text-gray-700 transition-colors hover:text-black"
           >
-            Témoignages
+            {t("testimonials")}
           </button>
           <button
             onClick={() => scrollToSection("faq")}
             className="text-sm font-medium text-gray-700 transition-colors hover:text-black"
           >
-            Ressources
+            {t("resources")}
           </button>
         </div>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons + Language Toggle */}
         <div className="hidden items-center gap-4 md:flex">
           <Button
             size="default"
@@ -104,9 +107,11 @@ export function Header() {
             asChild
           >
             <Link href="https://app.clickon.it.com/" target="_blank" rel="noopener noreferrer">
-              Se connecter
+              {t("login")}
             </Link>
           </Button>
+
+          <LanguageToggle />
         </div>
 
         {/* Mobile Menu Button */}
@@ -133,47 +138,41 @@ export function Header() {
                 onClick={() => scrollToSection("demo")}
                 className="text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg px-4 py-2 text-left text-sm font-medium transition-colors"
               >
-                Démo
+                {t("demo")}
               </button>
               <button
                 onClick={() => scrollToSection("results")}
                 className="text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg px-4 py-2 text-left text-sm font-medium transition-colors"
               >
-                Résultats
+                {t("results")}
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
                 className="text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg px-4 py-2 text-left text-sm font-medium transition-colors"
               >
-                Témoignages
+                {t("testimonials")}
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
                 className="text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg px-4 py-2 text-left text-sm font-medium transition-colors"
               >
-                Ressources
+                {t("resources")}
               </button>
+              <div className="flex items-center justify-between border-t pt-3">
+                <LanguageToggle />
+              </div>
               <div className="flex flex-col gap-2 border-t pt-2">
-                <Button variant="ghost" size="sm" className="justify-start font-medium" asChild>
-                  <Link
-                    href="https://app.clickon.it.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Se connecter
-                  </Link>
-                </Button>
                 <Button
                   size="sm"
                   className="bg-[#fcb723] font-semibold text-black hover:bg-[#e5a520]"
                   asChild
                 >
                   <Link
-                    href="http://app.brokermail.ca/h/t/5911F0FB83917A63"
+                    href="https://app.clickon.it.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    S&apos;inscrire
+                    {t("login")}
                   </Link>
                 </Button>
               </div>

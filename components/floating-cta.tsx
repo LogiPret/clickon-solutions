@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export function FloatingCTA() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDemoVisible, setIsDemoVisible] = useState(false);
+  const t = useTranslations("floatingCta");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,7 +74,7 @@ export function FloatingCTA() {
               className="rounded-full border border-black bg-[#fcb723] px-6 text-2xl font-semibold text-black shadow-xl shadow-[#000000]/30 hover:bg-[#e5a520]"
             >
               <Calendar className="mr-2 h-5 w-5" />
-              Réserver une démo
+              {t("bookDemo")}
             </Button>
           </div>
         </motion.div>

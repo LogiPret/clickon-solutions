@@ -2,33 +2,31 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-import { useEffect, useState } from "react";
-
-const benefits = [
-  "Démo personnalisée de 20 minutes",
-  "Analyse gratuite de votre base clients",
-  "Estimation du potentiel de revenus",
-  "Aucun engagement requis",
-];
+import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 export function DemoSection() {
-  const [isClient, setIsClient] = useState(false);
+  const t = useTranslations("demo");
+
+  const benefits = [
+    t("benefits.personalDemo"),
+    t("benefits.freeAnalysis"),
+    t("benefits.revenueEstimate"),
+    t("benefits.noCommitment"),
+  ];
 
   useEffect(() => {
-    setIsClient(true);
+    // Load Calendly script once
+    const existingScript = document.querySelector(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
+    );
 
-    // Load Calendly script
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup script on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
   }, []);
 
   return (
@@ -41,12 +39,9 @@ export function DemoSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="mb-6 text-4xl font-bold md:text-5xl">Prêt à générer plus de leads ?</h2>
+            <h2 className="mb-6 text-4xl font-bold md:text-5xl">{t("title")}</h2>
 
-            <p className="mb-10 text-xl leading-relaxed text-gray-300">
-              Discutez avec un spécialiste en fidélisation pour voir comment ClickOn peut
-              transformer vos clients en revenus.
-            </p>
+            <p className="mb-10 text-xl leading-relaxed text-gray-300">{t("description")}</p>
 
             <ul className="mb-10 space-y-4">
               {benefits.map((benefit, index) => (
@@ -66,13 +61,11 @@ export function DemoSection() {
             className="flex w-full items-center justify-center"
           >
             {/* Calendly widget */}
-            {isClient && (
-              <div
-                className="calendly-inline-widget w-full overflow-hidden rounded-lg"
-                data-url="https://calendly.com/fgiroux-logipret/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1a1a1a&primary_color=fcb723"
-                style={{ height: "600px" }}
-              />
-            )}
+            <div
+              className="calendly-inline-widget w-full overflow-hidden rounded-lg"
+              data-url="https://calendly.com/fgiroux-logipret/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1a1a1a&primary_color=fcb723"
+              style={{ height: "600px" }}
+            />
           </motion.div>
         </div>
       </div>

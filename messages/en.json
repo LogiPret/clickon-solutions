@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "title": "ClickOn Solutions - Harness the Power of Your Database",
+    "description": "Generate sales by automating your database with the Privilege Club"
+  },
+  "header": {
+    "demo": "Demo",
+    "results": "Results",
+    "testimonials": "Testimonials",
+    "resources": "Resources",
+    "login": "Log in",
+    "register": "Sign up"
+  },
+  "hero": {
+    "badge": "Connect • Reward • Close",
+    "title": "CRMs manage your prospects",
+    "titleHighlight": "ClickOn",
+    "titleEnd": "revives your clients",
+    "description": "Connect ClickOn to your CRM and let it automatically re-engage the clients you had lost track of.",
+    "cta": "See how it works"
+  },
+  "howItWorks": {
+    "title": "A loyalty system that",
+    "titleHighlight": "performs",
+    "subtitle": "Three pillars, two key objectives.",
+    "subtitleLong": "Our approach is based on three fundamental pillars to achieve two critical objectives: stay present and understand your clients.",
+    "bottomCta": "Save time while staying connected with your clients",
+    "objective": "Objective",
+    "clickonAutomates": "ClickOn automates",
+    "pillars": {
+      "value": {
+        "title": "Value",
+        "description": "Make it relevant for everyone in your database",
+        "solution": "$3 to $5,000 contest every month"
+      },
+      "constancy": {
+        "title": "Consistency",
+        "description": "Multiple times a year to ensure you stay top of mind",
+        "solution": "Once a month automatically"
+      },
+      "engagement": {
+        "title": "Engagement",
+        "description": "Information exchange to understand client intentions",
+        "solution": "Questions + answers in the platform"
+      }
+    },
+    "goals": {
+      "stayTop": {
+        "number": "01",
+        "title": "Stay top of mind",
+        "description": "Prospects, former clients, or anyone who might need your services"
+      },
+      "knowIntentions": {
+        "number": "02",
+        "title": "Know their intentions",
+        "description": "Loan, sale, purchase, referral"
+      }
+    }
+  },
+  "results": {
+    "title": "Results that speak for themselves",
+    "stats": {
+      "openRate": {
+        "value": "46%",
+        "label": "Open Rate",
+        "description": "Well above average"
+      },
+      "engagementRate": {
+        "value": "14%",
+        "label": "Engagement Rate",
+        "description": "Your clients interact"
+      },
+      "activeBrokers": {
+        "value": "150+",
+        "label": "Active Brokers",
+        "description": "Personalized and dedicated service"
+      },
+      "automated": {
+        "value": "100%",
+        "label": "Automated",
+        "description": "No effort on your part"
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Calculate how",
+    "titleHighlight": "ClickOn",
+    "titleMiddle": "can generate more engagement, more",
+    "titleEnd": "revenue",
+    "clientCount": "Number of clients",
+    "avgCommission": "Average commission",
+    "openings": "Opens (46%)",
+    "engagement": "Engagement (14%)",
+    "potentialSales": "Potential sales (5%)",
+    "revenueLabel": "Revenue potential",
+    "additionalSales": "Potential additional sales",
+    "basedOn": "Based on 5% of engagements per month at",
+    "perSale": "per sale"
+  },
+  "exclusive": {
+    "title": "Limited and",
+    "titleHighlight": "exclusive",
+    "subtitle": "ClickOn is offered to only",
+    "brokerCount": "300 brokers",
+    "subtitleEnd": "in real estate and mortgage in Quebec.",
+    "limitNote": "This limit will never change",
+    "benefits": {
+      "edge": {
+        "title": "Competitive edge in your region",
+        "description": "Stand out among the",
+        "brokerCount": "17,000 brokers",
+        "descriptionEnd": "in Quebec with exclusive access to our platform."
+      },
+      "support": {
+        "title": "Personalized support",
+        "description": "Benefit from dedicated support throughout your usage to customize your service."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "subtitle": "Brokers who generate more revenue with ClickOn",
+    "items": {
+      "moncef": {
+        "name": "Moncef Zaghry",
+        "role": "Real Estate Broker",
+        "content": "I was pleasantly surprised to receive two serious referrals from the very first send. I expected it to take four to five months before seeing results from this program."
+      },
+      "mark": {
+        "name": "Mark-Anthony Barbieri",
+        "role": "Mortgage Broker",
+        "content": "I quickly understood the value of this initiative. It's a brilliant strategy to get the client's response to the 'question of the month'. This element alone triggers a conversation with my clients, as I always take the time to wish them 'Good luck' for the contest. This simple exchange (with a reminder to 'contact me for any mortgage questions') generates sales. Even after several years in the industry… it's never too late to innovate!"
+      }
+    }
+  },
+  "clubPrivilege": {
+    "club": "Club",
+    "privilege": "Privilege",
+    "title": "Experience the",
+    "titleHighlight": "VIP",
+    "description": "As a broker, it's essential to know what your clients receive. Sign up for our demo list to receive our campaign examples and see for yourself the quality of our communications.",
+    "cta": "Test the client experience"
+  },
+  "demo": {
+    "title": "Ready to generate more leads?",
+    "description": "Speak with a loyalty specialist to see how ClickOn can transform your clients into revenue.",
+    "benefits": {
+      "personalDemo": "20-minute personalized demo",
+      "freeAnalysis": "Free analysis of your client base",
+      "revenueEstimate": "Revenue potential estimate",
+      "noCommitment": "No commitment required"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about ClickOn",
+    "items": {
+      "contact": {
+        "question": "How does ClickOn contact my former clients?",
+        "answer": "ClickOn uses a combination of personalized emails, SMS and automated calls based on your preferences. Our AI analyzes the best time and channel for each client."
+      },
+      "results": {
+        "question": "How long before seeing results?",
+        "answer": "Most of our clients receive their first qualified leads within 7 to 14 days of activation. Results continuously improve over time."
+      },
+      "crm": {
+        "question": "Does ClickOn work with my current CRM?",
+        "answer": "Yes! ClickOn easily integrates with the major CRMs on the market. You can also import your contacts via a simple Excel or CSV file."
+      }
+    }
+  },
+  "floatingCta": {
+    "bookDemo": "Book a demo"
+  },
+  "footer": {
+    "copyright": "© 2025 ClickOn.solutions. All rights reserved.",
+    "privacy": "Privacy"
+  },
+  "privacy": {
+    "title": "Privacy Policy"
+  }
+}

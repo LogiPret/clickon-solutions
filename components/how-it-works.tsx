@@ -1,53 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { Target, ChevronDown } from "lucide-react";
-
-const pillars = [
-  {
-    title: "Valeur",
-    description: "Que ce soit pertinent pour tous les gens dans votre base de données",
-    clickonSolution: "Concours de 3 à 5000$ chaque mois",
-    goal: 1,
-  },
-  {
-    title: "Constance",
-    description: "Plusieurs fois par année pour assurer d'être dans sa tête",
-    clickonSolution: "1 fois par mois automatiquement",
-    goal: 1,
-  },
-  {
-    title: "Engagement",
-    description: "Échange d'informations pour connaître les intentions clients",
-    clickonSolution: "Questions + réponses dans la plateforme",
-    goal: 2,
-  },
-];
-
-const goals = [
-  {
-    number: "01",
-    title: "Rester dans la tête des gens",
-    description:
-      "Prospects, anciens clients, ou toute personne qui pourrait avoir besoin de vos services",
-    pillars: ["Valeur", "Constance"],
-  },
-  {
-    number: "02",
-    title: "Connaître leurs intentions",
-    description: "Prêt, vente, achat, référence",
-    pillars: ["Engagement"],
-  },
-];
 
 // Mobile scroll-driven animation component for a single goal with its pillars
 function MobileGoalSection({
   goal,
   goalPillars,
+  t,
 }: {
-  goal: (typeof goals)[0];
-  goalPillars: typeof pillars;
+  goal: { number: string; title: string; description: string };
+  goalPillars: { title: string; description: string; clickonSolution: string; goal: number }[];
+  t: ReturnType<typeof useTranslations>;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -110,7 +76,7 @@ function MobileGoalSection({
         <div className="flex items-start gap-2.5">
           <div className="min-w-0 flex-1">
             <span className="text-sm font-bold tracking-wider text-black/60 uppercase">
-              Objectif {goal.number}
+              {t("objective")} {goal.number}
             </span>
             <h3 className="text-base text-xl leading-tight font-bold text-black">{goal.title}</h3>
             <p className="mt-1 leading-snug text-black/70">{goal.description}</p>
@@ -186,6 +152,41 @@ export function HowItWorks() {
   const pillar3Ref = useRef<HTMLDivElement>(null);
 
   const [activeGoal, setActiveGoal] = useState<1 | 2>(1);
+  const t = useTranslations("howItWorks");
+
+  const pillars = [
+    {
+      title: t("pillars.value.title"),
+      description: t("pillars.value.description"),
+      clickonSolution: t("pillars.value.solution"),
+      goal: 1,
+    },
+    {
+      title: t("pillars.constancy.title"),
+      description: t("pillars.constancy.description"),
+      clickonSolution: t("pillars.constancy.solution"),
+      goal: 1,
+    },
+    {
+      title: t("pillars.engagement.title"),
+      description: t("pillars.engagement.description"),
+      clickonSolution: t("pillars.engagement.solution"),
+      goal: 2,
+    },
+  ];
+
+  const goals = [
+    {
+      number: t("goals.stayTop.number"),
+      title: t("goals.stayTop.title"),
+      description: t("goals.stayTop.description"),
+    },
+    {
+      number: t("goals.knowIntentions.number"),
+      title: t("goals.knowIntentions.title"),
+      description: t("goals.knowIntentions.description"),
+    },
+  ];
 
   const [lines, setLines] = useState<{
     goal1ToPillar1: LineCoords | null;
@@ -282,26 +283,32 @@ export function HowItWorks() {
       <div className="lg:hidden">
         <div className="px-4 py-6 text-center">
           <h2 className="mb-2 text-2xl font-bold text-slate-900">
-            Un système de fidélisation{" "}
+            {t("title")}{" "}
             <span className="relative inline-block">
-              <span className="relative z-10">performant</span>
+              <span className="relative z-10">{t("titleHighlight")}</span>
               <span className="absolute bottom-0.5 left-0 z-0 h-1.5 w-full bg-[#fcb723]/70"></span>
             </span>
           </h2>
-          <p className="text-lg text-slate-600">Trois piliers, deux objectifs clés.</p>
+          <p className="text-lg text-slate-600">{t("subtitle")}</p>
         </div>
 
         {/* Goal 1 Section */}
-        <MobileGoalSection goal={goals[0]} goalPillars={pillars.filter((p) => p.goal === 1)} />
+        <MobileGoalSection
+          goal={goals[0]}
+          goalPillars={pillars.filter((p) => p.goal === 1)}
+          t={t}
+        />
 
         {/* Goal 2 Section */}
-        <MobileGoalSection goal={goals[1]} goalPillars={pillars.filter((p) => p.goal === 2)} />
+        <MobileGoalSection
+          goal={goals[1]}
+          goalPillars={pillars.filter((p) => p.goal === 2)}
+          t={t}
+        />
 
         {/* Bottom CTA Mobile */}
         <div className="px-4 py-12 text-center">
-          <p className="text-xl font-bold text-slate-900">
-            Gagnez du temps tout en restant connecté avec vos clients
-          </p>
+          <p className="text-xl font-bold text-slate-900">{t("bottomCta")}</p>
         </div>
       </div>
 
@@ -311,16 +318,13 @@ export function HowItWorks() {
           {/* Introduction */}
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-5xl">
-              Un système de fidélisation{" "}
+              {t("title")}{" "}
               <span className="relative inline-block">
-                <span className="relative z-10">performant</span>
+                <span className="relative z-10">{t("titleHighlight")}</span>
                 <span className="absolute bottom-2 left-0 z-0 h-3 w-full bg-[#fcb723]/70"></span>
               </span>
             </h2>
-            <p className="text-lg text-slate-600">
-              Notre approche repose sur trois piliers fondamentaux pour atteindre deux objectifs
-              critiques : rester présent et comprendre vos clients.
-            </p>
+            <p className="text-lg text-slate-600">{t("subtitleLong")}</p>
           </div>
 
           {/* Desktop Layout (Workflow View) */}
@@ -461,7 +465,7 @@ export function HowItWorks() {
                             isActive ? "text-black/60" : "text-slate-400"
                           }`}
                         >
-                          Objectif {goal.number}
+                          {t("objective")} {goal.number}
                         </span>
                         <h3
                           className={`mt-1 text-xl font-bold transition-colors duration-300 md:text-2xl ${
@@ -493,20 +497,22 @@ export function HowItWorks() {
                   <div
                     key={index}
                     ref={pillarRefs[index]}
-                    className={`relative rounded-2xl border-2 bg-white p-8 transition-all duration-300 hover:shadow-xl ${
+                    className={`relative flex flex-col rounded-2xl border-2 bg-white p-8 transition-all duration-300 hover:shadow-xl ${
                       isActive ? "border-[#fcb723] shadow-lg" : "border-slate-200"
                     }`}
                   >
-                    <h4 className="mb-3 text-2xl font-bold text-slate-900">{pillar.title}</h4>
-                    <p className="mb-6 leading-relaxed text-slate-600">{pillar.description}</p>
+                    <div className="flex-1">
+                      <h4 className="mb-3 text-2xl font-bold text-slate-900">{pillar.title}</h4>
+                      <p className="leading-relaxed text-slate-600">{pillar.description}</p>
+                    </div>
 
                     <div
-                      className={`border-t pt-4 transition-colors duration-300 ${
+                      className={`mt-6 border-t pt-4 transition-colors duration-300 ${
                         isActive ? "border-[#fcb723]/30" : "border-slate-200"
                       }`}
                     >
                       <p className="mb-2 text-xs font-bold tracking-wider text-slate-400 uppercase">
-                        ClickOn automatise
+                        {t("clickonAutomates")}
                       </p>
                       <p
                         className={`font-bold transition-colors duration-300 ${
@@ -524,9 +530,7 @@ export function HowItWorks() {
 
           {/* Bottom CTA */}
           <div className="mt-20 text-center">
-            <p className="text-2xl font-bold text-slate-900">
-              Gagnez du temps tout en restant connecté avec vos clients
-            </p>
+            <p className="text-2xl font-bold text-slate-900">{t("bottomCta")}</p>
           </div>
         </div>
       </div>

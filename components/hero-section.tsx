@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export function HeroSection() {
+  const t = useTranslations("hero");
+
   const scrollToDemo = () => {
     const element = document.getElementById("demo");
     if (!element) return;
@@ -43,17 +46,16 @@ export function HeroSection() {
           >
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#fcb723] px-4 py-1.5 text-xs font-bold tracking-wide text-black uppercase md:mb-8">
-                Connecter • Récompenser • Closer
+                {t("badge")}
               </div>
 
               <h1 className="mb-6 text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                Les CRM gèrent vos prospects <span className="text-[#fcb723]">ClickOn</span> ravive
-                vos clients
+                {t("title")} <span className="text-[#fcb723]">{t("titleHighlight")}</span>{" "}
+                {t("titleEnd")}
               </h1>
 
               <p className="mb-8 max-w-xl text-lg leading-relaxed text-gray-300 md:mb-10 md:text-xl">
-                Branchez ClickOn à votre CRM et laissez-le relancer, automatiquement, les clients
-                que vous aviez perdus de vue.
+                {t("description")}
               </p>
             </div>
             <div className="mb-8 px-[5vw] lg:hidden">
@@ -114,7 +116,7 @@ export function HeroSection() {
               className="h-14 w-full bg-[#fcb723] px-8 text-base font-medium text-black hover:bg-[#e5a520]"
               onClick={scrollToDemo}
             >
-              Voir comment ça marche
+              {t("cta")}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </motion.div>

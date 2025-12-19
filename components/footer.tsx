@@ -1,7 +1,13 @@
-import { Mail, Phone } from "lucide-react";
+"use client";
+
+import { Mail } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { LanguageToggleFooter } from "@/components/language-toggle";
 
 export function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <footer className="relative border-t border-gray-800 bg-black px-6 py-16">
       <div
@@ -33,16 +39,19 @@ export function Footer() {
               </a>
             </div>
           </div>
+          <div className="flex items-start justify-end md:col-span-2">
+            <LanguageToggleFooter />
+          </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 md:flex-row">
-          <p className="text-sm text-gray-400">© 2025 ClickOn.solutions. Tous droits réservés.</p>
+          <p className="text-sm text-gray-400">{t("copyright")}</p>
           <div className="flex gap-8">
             <a
               href="/politique-de-confidentialite"
               className="text-sm text-gray-400 transition-colors hover:text-white"
             >
-              Confidentialité
+              {t("privacy")}
             </a>
           </div>
         </div>

@@ -1,26 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function CalendlySection() {
-  const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
-    setIsClient(true);
+    // Load Calendly script once
+    const existingScript = document.querySelector(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
+    );
 
-    // Load Calendly script
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup script on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
   }, []);
 
   return (
@@ -34,15 +29,12 @@ export function CalendlySection() {
             transition={{ duration: 0.6 }}
             className="flex items-center justify-center"
           >
-            {/* Début de widget en ligne Calendly */}
-            {isClient && (
-              <div
-                className="calendly-inline-widget overflow-hidden rounded-lg"
-                data-url="https://calendly.com/fgiroux-logipret/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=&text_color=1a1a1a&primary_color=fcb723"
-                style={{ minWidth: "420px", height: "950px" }}
-              />
-            )}
-            {/* Fin de widget en ligne Calendly */}
+            {/* Calendly inline widget */}
+            <div
+              className="calendly-inline-widget overflow-hidden rounded-lg"
+              data-url="https://calendly.com/fgiroux-logipret/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1a1a1a&primary_color=fcb723"
+              style={{ minWidth: "420px", height: "950px" }}
+            />
           </motion.div>
         </div>
       </div>

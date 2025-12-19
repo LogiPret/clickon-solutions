@@ -3,35 +3,34 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import Image from "next/image";
-
-const testimonials = [
-  {
-    name: "Moncef Zaghry",
-    role: "Courtier Immobilier",
-    content:
-      "J'ai été agréablement surpris de recevoir deux références sérieuses dès le premier envoi. Je m'attendais à ce que cela prenne quatre à cinq mois avant de voir des résultats de ce programme.",
-    rating: 5,
-    image: "/mz-pic.jpg",
-  },
-  {
-    name: "Mark-Anthony Barbieri",
-    role: "Courtier Hypothécaire",
-    content:
-      "J’ai très vite compris la valeur de cette initiative. C’est une stratégie géniale pour obtenir la réponse du client à la ‘question du mois’. Rien que cet élément déclenche une conversation avec mes clients, car je prends toujours le temps de leur souhaiter ‘Bonne chance’ pour le concours. Ce simple échange (avec un rappel de ‘me contacter pour toute question hypothécaire’) génère des ventes. Même après plusieurs années dans l’industrie… il n’est jamais trop tard pour innover !",
-    rating: 5,
-    image: "/mb-pic.jpg",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function TestimonialsSection() {
+  const t = useTranslations("testimonials");
+
+  const testimonials = [
+    {
+      name: t("items.moncef.name"),
+      role: t("items.moncef.role"),
+      content: t("items.moncef.content"),
+      rating: 5,
+      image: "/mz-pic.jpg",
+    },
+    {
+      name: t("items.mark.name"),
+      role: t("items.mark.role"),
+      content: t("items.mark.content"),
+      rating: 5,
+      image: "/mb-pic.jpg",
+    },
+  ];
+
   return (
     <section id="testimonials" className="bg-white px-6 py-12 pt-24 md:py-20 md:pt-32">
       <div className="container mx-auto max-w-7xl">
         <div className="mb-16 text-center">
-          <h2 className="mb-6 text-4xl font-bold md:text-5xl">Ce que nos clients disent</h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600">
-            Des courtiers qui génèrent plus de revenus grâce à ClickOn
-          </p>
+          <h2 className="mb-6 text-4xl font-bold md:text-5xl">{t("title")}</h2>
+          <p className="mx-auto max-w-3xl text-xl text-gray-600">{t("subtitle")}</p>
         </div>
 
         <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 md:gap-8 lg:flex lg:justify-center">

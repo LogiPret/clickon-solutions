@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "title": "ClickOn Solutions - Exploitez la puissance de votre base de données",
+    "description": "Générez des ventes en automatisant votre base de données avec le Club Privilège"
+  },
+  "header": {
+    "demo": "Démo",
+    "results": "Résultats",
+    "testimonials": "Témoignages",
+    "resources": "Ressources",
+    "login": "Se connecter",
+    "register": "S'inscrire"
+  },
+  "hero": {
+    "badge": "Connecter • Récompenser • Closer",
+    "title": "Les CRM gèrent vos prospects",
+    "titleHighlight": "ClickOn",
+    "titleEnd": "ravive vos clients",
+    "description": "Branchez ClickOn à votre CRM et laissez-le relancer, automatiquement, les clients que vous aviez perdus de vue.",
+    "cta": "Voir comment ça marche"
+  },
+  "howItWorks": {
+    "title": "Un système de fidélisation",
+    "titleHighlight": "performant",
+    "subtitle": "Trois piliers, deux objectifs clés.",
+    "subtitleLong": "Notre approche repose sur trois piliers fondamentaux pour atteindre deux objectifs critiques : rester présent et comprendre vos clients.",
+    "bottomCta": "Gagnez du temps tout en restant connecté avec vos clients",
+    "objective": "Objectif",
+    "clickonAutomates": "ClickOn automatise",
+    "pillars": {
+      "value": {
+        "title": "Valeur",
+        "description": "Que ce soit pertinent pour tous les gens dans votre base de données",
+        "solution": "Concours de 3 à 5000$ chaque mois"
+      },
+      "constancy": {
+        "title": "Constance",
+        "description": "Plusieurs fois par année pour assurer d'être dans sa tête",
+        "solution": "1 fois par mois automatiquement"
+      },
+      "engagement": {
+        "title": "Engagement",
+        "description": "Échange d'informations pour connaître les intentions clients",
+        "solution": "Questions + réponses dans la plateforme"
+      }
+    },
+    "goals": {
+      "stayTop": {
+        "number": "01",
+        "title": "Rester dans la tête des gens",
+        "description": "Prospects, anciens clients, ou toute personne qui pourrait avoir besoin de vos services"
+      },
+      "knowIntentions": {
+        "number": "02",
+        "title": "Connaître leurs intentions",
+        "description": "Prêt, vente, achat, référence"
+      }
+    }
+  },
+  "results": {
+    "title": "Des résultats qui parlent d'eux-mêmes",
+    "stats": {
+      "openRate": {
+        "value": "46%",
+        "label": "Taux d'ouverture",
+        "description": "Bien au-dessus de la moyenne"
+      },
+      "engagementRate": {
+        "value": "14%",
+        "label": "Taux d'engagement",
+        "description": "Vos clients interagissent"
+      },
+      "activeBrokers": {
+        "value": "150+",
+        "label": "Courtiers Actifs",
+        "description": "Service personnalisé et dédié"
+      },
+      "automated": {
+        "value": "100%",
+        "label": "Automatisé",
+        "description": "Aucun effort de votre part"
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Calculez comment",
+    "titleHighlight": "ClickOn",
+    "titleMiddle": "peut generer plus d'engagements, plus de",
+    "titleEnd": "revenus",
+    "clientCount": "Nombre de clients",
+    "avgCommission": "Commission moyenne",
+    "openings": "Ouvertures (46%)",
+    "engagement": "Engagement (14%)",
+    "potentialSales": "Ventes potentielles (5%)",
+    "revenueLabel": "Potentiel de revenus",
+    "additionalSales": "Ventes additionnelles potentielles",
+    "basedOn": "Basé sur 5% des engagements par mois à",
+    "perSale": "par vente"
+  },
+  "exclusive": {
+    "title": "Un accès limité et",
+    "titleHighlight": "exclusif",
+    "subtitle": "ClickOn est offert à seulement",
+    "brokerCount": "300 courtiers",
+    "subtitleEnd": "immobiliers et hypothécaires au Québec.",
+    "limitNote": "Cette limite ne changera jamais",
+    "benefits": {
+      "edge": {
+        "title": "Edge compétitif dans votre région",
+        "description": "Démarquez-vous parmi les",
+        "brokerCount": "17 000 courtiers",
+        "descriptionEnd": "du Québec avec un accès exclusif à notre plateforme."
+      },
+      "support": {
+        "title": "Support personnalisé",
+        "description": "Bénéficiez d'un accompagnement dédié tout au long de votre utilisation pour personnaliser votre service."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Ce que nos clients disent",
+    "subtitle": "Des courtiers qui génèrent plus de revenus grâce à ClickOn",
+    "items": {
+      "moncef": {
+        "name": "Moncef Zaghry",
+        "role": "Courtier Immobilier",
+        "content": "J'ai été agréablement surpris de recevoir deux références sérieuses dès le premier envoi. Je m'attendais à ce que cela prenne quatre à cinq mois avant de voir des résultats de ce programme."
+      },
+      "mark": {
+        "name": "Mark-Anthony Barbieri",
+        "role": "Courtier Hypothécaire",
+        "content": "J'ai très vite compris la valeur de cette initiative. C'est une stratégie géniale pour obtenir la réponse du client à la 'question du mois'. Rien que cet élément déclenche une conversation avec mes clients, car je prends toujours le temps de leur souhaiter 'Bonne chance' pour le concours. Ce simple échange (avec un rappel de 'me contacter pour toute question hypothécaire') génère des ventes. Même après plusieurs années dans l'industrie… il n'est jamais trop tard pour innover !"
+      }
+    }
+  },
+  "clubPrivilege": {
+    "club": "Club",
+    "privilege": "Privilège",
+    "title": "Vivez l'expérience",
+    "titleHighlight": "VIP",
+    "description": "En tant que courtier, il est essentiel de savoir ce que vos clients reçoivent. Inscrivez-vous à notre liste de démonstration pour recevoir nos exemples de campagnes et constater par vous-même la qualité de nos communications.",
+    "cta": "Tester l'expérience client"
+  },
+  "demo": {
+    "title": "Prêt à générer plus de leads ?",
+    "description": "Discutez avec un spécialiste en fidélisation pour voir comment ClickOn peut transformer vos clients en revenus.",
+    "benefits": {
+      "personalDemo": "Démo personnalisée de 20 minutes",
+      "freeAnalysis": "Analyse gratuite de votre base clients",
+      "revenueEstimate": "Estimation du potentiel de revenus",
+      "noCommitment": "Aucun engagement requis"
+    }
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "subtitle": "Tout ce que vous devez savoir sur ClickOn",
+    "items": {
+      "contact": {
+        "question": "Comment ClickOn contacte-t-il mes anciens clients ?",
+        "answer": "ClickOn utilise une combinaison d'emails personnalisés, de SMS et d'appels automatisés selon vos préférences. Notre IA analyse le meilleur moment et le meilleur canal pour chaque client."
+      },
+      "results": {
+        "question": "Combien de temps avant de voir des résultats ?",
+        "answer": "La plupart de nos clients reçoivent leurs premiers leads qualifiés dans les 7 à 14 jours suivant l'activation. Les résultats s'améliorent continuellement avec le temps."
+      },
+      "crm": {
+        "question": "Est-ce que ClickOn fonctionne avec mon CRM actuel ?",
+        "answer": "Oui ! ClickOn s'intègre facilement avec les principaux CRM du marché. Vous pouvez aussi importer vos contacts via un simple fichier Excel ou CSV."
+      }
+    }
+  },
+  "floatingCta": {
+    "bookDemo": "Réserver une démo"
+  },
+  "footer": {
+    "copyright": "© 2025 ClickOn.solutions. Tous droits réservés.",
+    "privacy": "Confidentialité"
+  },
+  "privacy": {
+    "title": "Politique de confidentialité"
+  }
+}

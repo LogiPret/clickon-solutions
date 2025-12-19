@@ -3,8 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export function ClubPrivilegeSection() {
+  const t = useTranslations("clubPrivilege");
+
   return (
     <section className="relative overflow-hidden bg-black py-24 md:py-32">
       {/* Background Elements */}
@@ -51,9 +54,9 @@ export function ClubPrivilegeSection() {
                 className="mb-8 flex h-32 w-32 items-center justify-center rounded-full border-2 border-[#C5A059] bg-black shadow-[0_0_40px_-10px_rgba(197,160,89,0.5)]"
               >
                 <div className="flex flex-col items-center justify-center p-4">
-                  <span className="font-serif text-3xl text-[#C5A059] italic">Club</span>
+                  <span className="font-serif text-3xl text-[#C5A059] italic">{t("club")}</span>
                   <span className="mt-1 text-[0.6rem] font-bold tracking-[0.2em] text-[#C5A059] uppercase">
-                    Privilège
+                    {t("privilege")}
                   </span>
                 </div>
               </motion.div>
@@ -65,7 +68,7 @@ export function ClubPrivilegeSection() {
                 transition={{ delay: 0.1 }}
                 className="mb-6 text-4xl font-bold tracking-tighter text-white md:text-6xl"
               >
-                Vivez l'expérience <span className="text-[#C5A059]">VIP</span>
+                {t("title")} <span className="text-[#C5A059]">{t("titleHighlight")}</span>
               </motion.h2>
 
               <motion.p
@@ -75,9 +78,7 @@ export function ClubPrivilegeSection() {
                 transition={{ delay: 0.2 }}
                 className="mb-10 max-w-2xl text-lg text-zinc-400 md:text-xl"
               >
-                En tant que courtier, il est essentiel de savoir ce que vos clients reçoivent.
-                Inscrivez-vous à notre liste de démonstration pour recevoir nos exemples de
-                campagnes et constater par vous-même la qualité de nos communications.
+                {t("description")}
               </motion.p>
 
               <motion.div
@@ -94,7 +95,7 @@ export function ClubPrivilegeSection() {
                   }
                 >
                   <Mail className="mr-2 h-5 w-5" />
-                  Tester l'expérience client
+                  {t("cta")}
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </motion.div>
