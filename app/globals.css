@@ -154,4 +154,21 @@
   .animate-accordion-up {
     animation: accordion-up 0.2s ease-out;
   }
+
+  /* Signature Form Styles */
+  .signature-btn-primary {
+    @apply rounded-lg bg-[#fbb624] px-6 py-3 font-semibold text-black shadow-sm transition-all duration-200 hover:bg-[#e5a520] hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .signature-input-field {
+    @apply w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 transition-all duration-200 outline-none focus:border-[#fbb624] focus:ring-2 focus:ring-[#fbb624];
+  }
+
+  .signature-checkbox-label {
+    @apply flex cursor-pointer items-start gap-3 select-none;
+  }
+
+  .signature-checkbox-input {
+    @apply mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-gray-300 text-[#fbb624] focus:ring-[#fbb624];
+  }
 }
