@@ -13,6 +13,7 @@ const N8N_WEBHOOK_URL =
 interface FormData {
   firstName: string;
   lastName: string;
+  title: string;
   email: string;
   phone: string;
   streetAddress: string;
@@ -26,6 +27,7 @@ interface FormData {
 const initialFormData: FormData = {
   firstName: "",
   lastName: "",
+  title: "",
   email: "",
   phone: "",
   streetAddress: "",
@@ -46,7 +48,9 @@ export default function SignaturePage() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [ipAddress, setIpAddress] = useState<string>("");
   const [highlightMissing, setHighlightMissing] = useState(false);
+  const [pdfStatusError, setPdfStatusError] = useState(false);
   const firstMissingFieldRef = useRef<HTMLElement | null>(null);
+  const pdfStatusRef = useRef<HTMLSpanElement | null>(null);
 
   const setFirstMissingFieldRefCallback = (el: HTMLElement | null) => {
     firstMissingFieldRef.current = el;
@@ -82,19 +86,13 @@ export default function SignaturePage() {
     let cancelled = false;
 
     const generateFilledPdf = async () => {
-      console.log("[SignaturePage] generateFilledPdf called");
-      console.log("[SignaturePage] Form data:", {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-      });
-
       // Only generate if we have at least first and last name
       if (formData.firstName && formData.lastName) {
-        console.log("[SignaturePage] Starting PDF generation...");
         try {
           const blob = await fillPdfFormFields(PDF_URL, {
             firstName: formData.firstName,
             lastName: formData.lastName,
+            title: formData.title,
             streetAddress: formData.streetAddress,
             city: formData.city,
             province: formData.province,
@@ -103,12 +101,7 @@ export default function SignaturePage() {
             email: formData.email,
           });
 
-          if (cancelled) {
-            console.log("[SignaturePage] Effect was cancelled, skipping state update");
-            return;
-          }
-
-          console.log("[SignaturePage] PDF blob created, size:", blob.size);
+          if (cancelled) return;
 
           // Store blob for email sending
           setFilledPdfBlob(blob);
@@ -119,11 +112,10 @@ export default function SignaturePage() {
           }
 
           const url = URL.createObjectURL(blob);
-          console.log("[SignaturePage] Created blob URL:", url);
           previousPdfUrlRef.current = url;
           setFilledPdfUrl(url);
         } catch (error) {
-          console.error("[SignaturePage] Error generating filled PDF:", error);
+          console.error("Error generating filled PDF:", error);
           // Fall back to original PDF if filling fails
           if (!cancelled) {
             setFilledPdfUrl(PDF_URL);
@@ -131,7 +123,6 @@ export default function SignaturePage() {
           }
         }
       } else {
-        console.log("[SignaturePage] No name data, using original PDF");
         // Use original PDF if no client data
         if (!cancelled) {
           setFilledPdfUrl(PDF_URL);
@@ -149,6 +140,7 @@ export default function SignaturePage() {
   }, [
     formData.firstName,
     formData.lastName,
+    formData.title,
     formData.streetAddress,
     formData.city,
     formData.province,
@@ -185,13 +177,24 @@ export default function SignaturePage() {
 
     if (!isFormDataComplete) {
       setHighlightMissing(true);
-      // Scroll to first missing field
+      setPdfStatusError(true);
+
+      // Reset error state after 3 seconds
+      setTimeout(() => {
+        setPdfStatusError(false);
+      }, 3000);
+
+      // Focus on the status message first to draw attention
+      if (pdfStatusRef.current) {
+        pdfStatusRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      // Then scroll to first missing field
       setTimeout(() => {
         if (firstMissingFieldRef.current) {
           firstMissingFieldRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
           firstMissingFieldRef.current.focus();
         }
-      }, 100);
+      }, 500);
       return;
     }
 
@@ -257,6 +260,7 @@ export default function SignaturePage() {
     const signature: ContractSignature = {
       first_name: formData.firstName,
       last_name: formData.lastName,
+      title: formData.title,
       email: formData.email,
       phone: formattedPhone,
       street_address: formData.streetAddress,
@@ -284,6 +288,7 @@ export default function SignaturePage() {
           body: JSON.stringify({
             firstName: formData.firstName,
             lastName: formData.lastName,
+            title: formData.title,
             phone: formattedPhone,
             email: formData.email,
             signedAt: new Date().toISOString().split("T")[0],
@@ -404,6 +409,21 @@ export default function SignaturePage() {
                     required
                   />
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="title" className="mb-1 block text-sm font-medium text-gray-700">
+                  Titre
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleInputChange}
+                  className="signature-input-field"
+                  placeholder="Propriétaire, Directeur, etc."
+                />
               </div>
 
               <div>
@@ -550,33 +570,49 @@ export default function SignaturePage() {
                   className="signature-checkbox-input"
                   required
                 />
-                <span className="text-sm text-gray-700">
-                  En cochant cette case, j&apos;accepte l&apos;{" "}
-                  <button
-                    type="button"
-                    onClick={handlePDFClick}
-                    className="hover:pointer font-semibold text-[#fbb624] underline hover:text-[#e5a520]"
+                <div className="flex flex-col gap-1">
+                  <span className="text-sm text-gray-700">
+                    En cochant cette case, j&apos;accepte l&apos;{" "}
+                    <button
+                      type="button"
+                      onClick={handlePDFClick}
+                      className="hover:pointer font-semibold text-[#fbb624] underline hover:text-[#e5a520]"
+                    >
+                      entente de service
+                    </button>
+                    . <span className="text-red-500">*</span>
+                  </span>
+                  <span
+                    ref={pdfStatusRef}
+                    className={`italic transition-all duration-300 ${
+                      isFormDataComplete
+                        ? "text-xs font-medium text-green-600"
+                        : pdfStatusError
+                          ? "animate-pulse text-sm font-semibold text-red-600"
+                          : "text-xs text-gray-500"
+                    }`}
                   >
-                    entente de service
-                  </button>
-                  . <span className="text-red-500">*</span>
-                </span>
+                    {isFormDataComplete
+                      ? "Entente de service générée"
+                      : "Complétez le formulaire pour voir l'entente de service personnalisée"}
+                  </span>
+                </div>
               </label>
             </div>
-
             {/* Acceptance Text */}
-            <div className="space-y-2">
+            <div className="flex flex-col items-center space-y-2 text-center">
               <label htmlFor="acceptanceText" className="block text-sm font-medium text-gray-700">
                 Pour confirmer votre accord, veuillez inscrire « j&apos;accepte » ci-dessous{" "}
                 <span className="text-red-500">*</span>
               </label>
+
               <input
                 type="text"
                 id="acceptanceText"
                 name="acceptanceText"
                 value={formData.acceptanceText}
                 onChange={handleInputChange}
-                className={`signature-input-field ${
+                className={`signature-input-field max-w-48 text-center ${
                   isAcceptanceValid
                     ? "border-[#fbb624] focus:border-[#fbb624] focus:ring-[#fbb624]"
                     : ""
@@ -584,12 +620,14 @@ export default function SignaturePage() {
                 placeholder="j'accepte"
                 required
               />
+
               {isAcceptanceValid && (
                 <p className="flex items-center gap-1 text-sm text-[#fbb624]">
                   <CheckCircle className="h-4 w-4" />
-                  Signature enregistree
+                  Signature enregistrée
                 </p>
               )}
+
               {formData.acceptanceText.trim().length > 0 && !isAcceptanceValid && (
                 <p className="flex items-center gap-1 text-sm text-red-600">
                   <AlertCircle className="h-4 w-4" />

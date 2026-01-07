@@ -32,6 +32,7 @@ export interface ContractSignature {
   user_agent?: string;
   signed_at: string;
   created_at?: string;
+  title?: string;
 }
 
 export async function uploadPdfToStorage(

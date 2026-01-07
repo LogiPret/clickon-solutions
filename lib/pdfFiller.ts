@@ -3,6 +3,7 @@ import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 export interface ClientData {
   firstName: string;
   lastName: string;
+  title?: string;
   streetAddress: string;
   city: string;
   province: string;
@@ -96,94 +97,58 @@ export async function fillPdfWithClientData(pdfUrl: string, clientData: ClientDa
  * This is more reliable if your PDF template has fillable form fields
  */
 export async function fillPdfFormFields(pdfUrl: string, clientData: ClientData): Promise<Blob> {
-  console.log("[pdfFiller] Starting fillPdfFormFields with URL:", pdfUrl);
-  console.log("[pdfFiller] Client data:", clientData);
-
-  console.log("[pdfFiller] Fetching PDF...");
   const response = await fetch(pdfUrl);
   if (!response.ok) {
-    console.error("[pdfFiller] Failed to fetch PDF:", response.status, response.statusText);
     throw new Error(`Failed to fetch PDF: ${response.status} ${response.statusText}`);
   }
 
   const existingPdfBytes = await response.arrayBuffer();
-  console.log("[pdfFiller] PDF fetched, size:", existingPdfBytes.byteLength, "bytes");
-
-  console.log("[pdfFiller] Loading PDF document...");
   const pdfDoc = await PDFDocument.load(existingPdfBytes);
-  console.log("[pdfFiller] PDF loaded successfully");
-
-  // Get the form
-  console.log("[pdfFiller] Getting form...");
   const form = pdfDoc.getForm();
-
-  // List all fields for debugging
-  const fields = form.getFields();
-  console.log(
-    "[pdfFiller] Available form fields:",
-    fields.map((f) => ({ name: f.getName(), type: f.constructor.name }))
-  );
 
   const fullName = `${clientData.firstName} ${clientData.lastName}`;
   const fullAddress = `${clientData.streetAddress}, ${clientData.city}, ${clientData.province} ${clientData.postalCode}`;
-  console.log("[pdfFiller] Full name:", fullName);
-  console.log("[pdfFiller] Full address:", fullAddress);
 
   // Fill form fields based on your PDF template
   try {
-    console.log("[pdfFiller] Filling form fields...");
-
     // Text1: Full name
-    const text1 = form.getTextField("Text1");
-    text1.setText(fullName);
-    console.log("[pdfFiller] Set Text1");
+    form.getTextField("Text1").setText(fullName);
 
     // Text2: Full name
-    const text2 = form.getTextField("Text2");
-    text2.setText(fullName);
-    console.log("[pdfFiller] Set Text2");
+    form.getTextField("Text2").setText(fullName);
 
     // Text3: Full name
-    const text3 = form.getTextField("Text3");
-    text3.setText(fullName);
-    console.log("[pdfFiller] Set Text3");
+    form.getTextField("Text3").setText(fullName);
 
-    // Text4: Title (keep empty)
-    const text4 = form.getTextField("Text4");
-    text4.setText("");
-    console.log("[pdfFiller] Set Text4");
+    // Text4: Title
+    form.getTextField("Text4").setText(clientData.title || "");
 
     // Text5: Address
-    const text5 = form.getTextField("Text5");
-    text5.setText(fullAddress);
-    console.log("[pdfFiller] Set Text5");
+    form.getTextField("Text5").setText(fullAddress);
 
     // Text6: Phone
-    const text6 = form.getTextField("Text6");
-    text6.setText(clientData.phone);
-    console.log("[pdfFiller] Set Text6");
+    form.getTextField("Text6").setText(clientData.phone);
 
     // Text7: Email
-    const text7 = form.getTextField("Text7");
-    text7.setText(clientData.email);
-    console.log("[pdfFiller] Set Text7");
+    form.getTextField("Text7").setText(clientData.email);
+
+    // Text8: Signed at date
+    const signedAtDate = new Date().toLocaleDateString("fr-CA", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    form.getTextField("Text8").setText(signedAtDate);
 
     // Flatten the form to make it non-editable
-    console.log("[pdfFiller] Flattening form...");
     form.flatten();
-    console.log("[pdfFiller] Form flattened");
   } catch (error) {
-    console.error("[pdfFiller] Error filling form fields:", error);
+    console.error("Error filling form fields:", error);
     throw new Error("PDF form fields not found. The PDF might not have fillable form fields.");
   }
 
-  console.log("[pdfFiller] Saving PDF...");
   const pdfBytes = await pdfDoc.save();
-  console.log("[pdfFiller] PDF saved, size:", pdfBytes.byteLength, "bytes");
-
-  const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
-  console.log("[pdfFiller] Blob created, size:", blob.size);
-  return blob;
+  return new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
 }
 
 /**
