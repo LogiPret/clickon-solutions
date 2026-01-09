@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, X, FileText, Loader2 } from "lucide-react";
+import { ZoomIn, ZoomOut, X, FileText, Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
 
 // Dynamically import react-pdf components with no SSR
@@ -27,7 +27,6 @@ interface PDFViewerProps {
 
 export function PDFViewer({ pdfUrl, isOpen, onClose }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number>(0);
-  const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState<number>(1.0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [containerWidth, setContainerWidth] = useState<number>(0);
@@ -75,8 +74,6 @@ export function PDFViewer({ pdfUrl, isOpen, onClose }: PDFViewerProps) {
     setIsLoading(false);
   }, []);
 
-  const goToPrevPage = () => setPageNumber((prev) => Math.max(prev - 1, 1));
-  const goToNextPage = () => setPageNumber((prev) => Math.min(prev + 1, numPages));
   const zoomIn = () => setScale((prev) => Math.min(prev + 0.2, 2.5));
   const zoomOut = () => setScale((prev) => Math.max(prev - 0.2, 0.3));
 
@@ -111,29 +108,9 @@ export function PDFViewer({ pdfUrl, isOpen, onClose }: PDFViewerProps) {
 
         {/* Toolbar - Compact on mobile */}
         <div className="flex shrink-0 items-center justify-center gap-1 border-b border-gray-200 bg-gray-50 p-2 sm:gap-4 sm:p-3">
-          <button
-            onClick={goToPrevPage}
-            disabled={pageNumber <= 1}
-            className="rounded-lg p-1.5 transition-colors hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40 sm:p-2"
-            aria-label="Page precedente"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-
-          <span className="min-w-16 text-center text-xs text-gray-600 sm:min-w-25 sm:text-sm">
-            {isMobile
-              ? `${pageNumber}/${numPages || "..."}`
-              : `Page ${pageNumber} / ${numPages || "..."}`}
+          <span className="text-xs text-gray-600 sm:text-sm">
+            {numPages ? `${numPages} page${numPages > 1 ? "s" : ""}` : "..."}
           </span>
-
-          <button
-            onClick={goToNextPage}
-            disabled={pageNumber >= numPages}
-            className="rounded-lg p-1.5 transition-colors hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40 sm:p-2"
-            aria-label="Page suivante"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
 
           <div className="mx-1 h-5 w-px bg-gray-300 sm:mx-2 sm:h-6" />
 
@@ -160,8 +137,8 @@ export function PDFViewer({ pdfUrl, isOpen, onClose }: PDFViewerProps) {
           </button>
         </div>
 
-        {/* PDF Content - Scrollable on mobile */}
-        <div className="flex flex-1 justify-center overflow-auto bg-gray-100 p-2 sm:p-4">
+        {/* PDF Content - Scrollable view of all pages */}
+        <div className="flex flex-1 flex-col items-center overflow-auto bg-gray-100 p-2 sm:p-4">
           {isLoading && (
             <div className="flex flex-col items-center justify-center py-20">
               <Loader2 className="h-8 w-8 animate-spin text-[#fbb624]" />
@@ -174,14 +151,19 @@ export function PDFViewer({ pdfUrl, isOpen, onClose }: PDFViewerProps) {
             onLoadError={(error) => console.error("PDF load error:", error)}
             loading=""
           >
-            <Page
-              pageNumber={pageNumber}
-              scale={scale}
-              width={isMobile ? containerWidth : undefined}
-              className="shadow-lg"
-              renderTextLayer={!isMobile}
-              renderAnnotationLayer={!isMobile}
-            />
+            <div className="flex flex-col items-center gap-4">
+              {Array.from(new Array(numPages), (_, index) => (
+                <Page
+                  key={`page_${index + 1}`}
+                  pageNumber={index + 1}
+                  scale={scale}
+                  width={isMobile ? containerWidth : undefined}
+                  className="shadow-lg"
+                  renderTextLayer={!isMobile}
+                  renderAnnotationLayer={!isMobile}
+                />
+              ))}
+            </div>
           </Document>
         </div>
 
