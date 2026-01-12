@@ -15,6 +15,26 @@ export const supabase = createClient(
   supabaseAnonKey || "placeholder-key"
 );
 
+/**
+ * Sanitize a string to be used as a safe filename
+ * Removes accents and special characters
+ */
+function sanitizeFilename(str: string): string {
+  return (
+    str
+      // Normalize to decompose accented characters (é → e + ´)
+      .normalize("NFD")
+      // Remove diacritical marks (the accent part)
+      .replace(/[\u0300-\u036f]/g, "")
+      // Replace spaces with dashes
+      .replace(/\s+/g, "-")
+      // Remove any remaining non-alphanumeric characters except dashes and dots
+      .replace(/[^a-zA-Z0-9\-.]/g, "")
+      // Remove multiple consecutive dashes
+      .replace(/-+/g, "-")
+  );
+}
+
 export interface ContractSignature {
   id?: string;
   first_name: string;
@@ -70,7 +90,9 @@ export async function submitSignature(
     // Upload PDF first if provided
     let pdfUrl: string | undefined;
     if (pdfBlob) {
-      const fileName = `${signature.first_name}-${signature.last_name}-${Date.now()}.pdf`;
+      const sanitizedFirstName = sanitizeFilename(signature.first_name);
+      const sanitizedLastName = sanitizeFilename(signature.last_name);
+      const fileName = `${sanitizedFirstName}-${sanitizedLastName}-${Date.now()}.pdf`;
       const uploadResult = await uploadPdfToStorage(pdfBlob, fileName);
 
       if (uploadResult.success && uploadResult.url) {
