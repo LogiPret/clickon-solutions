@@ -43,6 +43,7 @@ export default function SignaturePage() {
   const [isPDFOpen, setIsPDFOpen] = useState(false);
   const [filledPdfUrl, setFilledPdfUrl] = useState<string>("");
   const [filledPdfBlob, setFilledPdfBlob] = useState<Blob | null>(null);
+  const [isPdfGenerating, setIsPdfGenerating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -88,6 +89,7 @@ export default function SignaturePage() {
     const generateFilledPdf = async () => {
       // Only generate if we have at least first and last name
       if (formData.firstName && formData.lastName) {
+        setIsPdfGenerating(true);
         try {
           const blob = await fillPdfFormFields(PDF_URL, {
             firstName: formData.firstName,
@@ -121,12 +123,17 @@ export default function SignaturePage() {
             setFilledPdfUrl(PDF_URL);
             setFilledPdfBlob(null);
           }
+        } finally {
+          if (!cancelled) {
+            setIsPdfGenerating(false);
+          }
         }
       } else {
         // Use original PDF if no client data
         if (!cancelled) {
           setFilledPdfUrl(PDF_URL);
           setFilledPdfBlob(null);
+          setIsPdfGenerating(false);
         }
       }
     };
@@ -257,6 +264,26 @@ export default function SignaturePage() {
     const formattedPhone = formatPhoneNumber(formData.phone);
     const consolidatedAddress = `${formData.streetAddress}, ${formData.city}, ${formData.province} ${formData.postalCode}`;
 
+    // Ensure we have a PDF blob - generate fresh one if not available
+    let pdfBlobToUpload = filledPdfBlob;
+    if (!pdfBlobToUpload) {
+      try {
+        pdfBlobToUpload = await fillPdfFormFields(PDF_URL, {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          title: formData.title,
+          streetAddress: formData.streetAddress,
+          city: formData.city,
+          province: formData.province,
+          postalCode: formData.postalCode,
+          phone: formData.phone,
+          email: formData.email,
+        });
+      } catch (error) {
+        console.error("Error generating PDF at submit time:", error);
+      }
+    }
+
     const signature: ContractSignature = {
       first_name: formData.firstName,
       last_name: formData.lastName,
@@ -275,11 +302,19 @@ export default function SignaturePage() {
     };
 
     // Submit to Supabase (includes PDF upload)
-    const result = await submitSignature(signature, filledPdfBlob || undefined);
+    const result = await submitSignature(signature, pdfBlobToUpload || undefined);
 
     if (result.success) {
       // Send all data to n8n webhook for Monday integration
       try {
+        // Log warning if PDF URL is missing
+        if (!result.pdfUrl) {
+          console.warn(
+            "Warning: PDF URL is missing from submission result. PDF blob was:",
+            pdfBlobToUpload ? "present" : "null"
+          );
+        }
+
         const n8nResponse = await fetch(N8N_WEBHOOK_URL, {
           method: "POST",
           headers: {
@@ -295,7 +330,7 @@ export default function SignaturePage() {
             address: consolidatedAddress,
             acceptanceText: formData.acceptanceText,
             ipAddress: ipAddress,
-            pdfUrl: result.pdfUrl,
+            pdfUrl: result.pdfUrl || "",
           }),
         });
 
