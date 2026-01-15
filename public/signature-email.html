@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Confirmation de signature</title>
+  <title>Bienvenue chez ClickOn</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f9fafb;">
   <table role="presentation" style="width: 100%; border-collapse: collapse;">
@@ -21,50 +21,193 @@
           <!-- Yellow accent bar -->
           <tr>
             <td style="padding: 0 40px;">
-              <div style="height: 4px; background-color: #fbb624; border-radius: 2px;"></div>
+              <div style="height: 4px; background-color: #fcb723; border-radius: 2px;"></div>
             </td>
           </tr>
           
           <!-- Main Content -->
           <tr>
             <td style="padding: 30px 40px;">
-              <h1 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 700; color: #111827;">
-                Confirmation de signature
-              </h1>
-              
               <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
                 Bonjour {{ $('Receive info when form completed').item.json.body.firstName }},
               </p>
               
               <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
-                Nous vous confirmons que votre entente de service a été signée avec succès le <strong>{{ $('Receive info when form completed').item.json.body.signedAt }}</strong>.
+                <strong>Félicitations et bienvenue dans l'univers ClickOn.</strong>
+              </p>
+              
+              <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Nous sommes très heureux de vous accueillir parmi nos membres et de débuter avec vous cette collaboration pour la prochaine année, afin de vous aider à rester présent et pertinent dans l'esprit de vos clients, mois après mois.
               </p>
               
               <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.6; color: #374151;">
-                Vous trouverez ci-joint une copie de votre entente de service signée pour vos dossiers.
+                Vous trouverez en pièce jointe une copie de votre contrat signé pour vos dossiers.
               </p>
               
-              <!-- Info Box -->
-              <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #fef9e7; border-radius: 8px; border-left: 4px solid #fbb624;">
+              <!-- Portal Access Section -->
+              <h2 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 700; color: #111827;">
+                Accès à votre portail ClickOn
+              </h2>
+              
+              <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Votre portail est maintenant actif. Vous pouvez y accéder dès maintenant :
+              </p>
+              
+              <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f3f4f6; border-radius: 8px; margin-bottom: 24px;">
                 <tr>
                   <td style="padding: 16px 20px;">
-                    <p style="margin: 0; font-size: 14px; color: #92400e;">
-                      Conservez ce courriel et le document PDF joint comme preuve de votre signature électronique.
+                    <p style="margin: 0 0 8px 0; font-size: 14px; color: #374151;">
+                      <strong>Lien du portail :</strong> <a href="https://app.clickon.it.com/" style="color: #fcb723;">https://app.clickon.it.com/</a>
+                    </p>
+                    <p style="margin: 0 0 8px 0; font-size: 14px; color: #374151;">
+                      <strong>Identifiant :</strong> {{ $('Receive info when form completed').item.json.body.email }}
+                    </p>
+                    <p style="margin: 0; font-size: 14px; color: #374151;">
+                      <strong>Mot de passe temporaire :</strong> Clickon2026
                     </p>
                   </td>
                 </tr>
               </table>
+              
+              <!-- Next Steps Section -->
+              <h2 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 700; color: #111827;">
+                Prochaines étapes recommandées
+              </h2>
+              
+              <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                <strong>1. Connectez-vous à votre portail et modifiez votre mot de passe</strong><br>
+                Une courte capsule vidéo est disponible ci-dessous pour vous guider (voir section FAQ).
+              </p>
+              
+              <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                <strong>2. Visualisez l'exemple de la campagne en cours</strong><br>
+                Vous pourrez voir concrètement à quoi ressemble votre campagne. Une capsule explicative est aussi disponible (Section FAQ).
+              </p>
+              
+              <!-- Tech Users Section -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #fef9e7; border-radius: 8px; border-left: 4px solid #fbb624; margin-bottom: 24px;">
+                <tr>
+                  <td style="padding: 16px 20px;">
+                    <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: #92400e;">
+                      Pour les plus technos (vous devriez y arriver sans problème)
+                    </p>
+                    <p style="margin: 0; font-size: 14px; color: #92400e;">
+                      Vous pouvez dès maintenant importer votre base de données de clients. Une capsule vidéo est disponible ci-dessous pour vous guider. Et bien sûr, nous pourrons approfondir le tout lors de votre rencontre d'intégration afin de mettre en place les automatisations nécessaires, pour que vous n'ayez plus à refaire ce travail chaque mois.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- Separator -->
+              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 24px 0;">
+              
+              <!-- FAQ Section -->
+              <h2 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 700; color: #111827;">
+                FAQ (capsules vidéos)
+              </h2>
+              
+              <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Bonne nouvelle : votre portail est conçu pour être simple et intuitif. Vous n'avez donc pas besoin de regarder les capsules vidéo à l'avance. Nous vous suggérons simplement de prendre connaissance des titres ci-dessous pour savoir où aller si une question se présente.
+              </p>
+              
+              <table role="presentation" style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px; margin-bottom: 8px;">
+                    <a href="https://www.youtube.com/watch?v=GIcFxQPFcPw&feature=youtu.be" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">1. Comment changer le mot de passe de son portail ClickOn ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=QugaccG67Zw" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">2. Comment visualiser ma campagne du mois et qu'est-ce qui est modifiable ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=iumSJPZd2w0&feature=youtu.be" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">3. Comment changer les textes dans les courriels (pas le texte de blogue) ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=WnIZzVHyTAI" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">4. Comment modifier ou changer l'article du mois ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=WnIZzVHyTAI" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">5. Comment ajouter une vidéo à ma campagne du mois ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=t4AX7pk9BxY" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">6. Comment importer une liste de clients ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=vkwqBlQ7xOY" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">7. Comment désabonner un client ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=nd7OQ_zNaZQ" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">8. Comment ajouter un client ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=qCGUT7c7SMk" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">9. Comment modifier sa signature dans les courriels ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=4u9bRSN8IYU" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">10. Comment changer la bannière image du haut ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=_aNYvAiYLmE" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">11. Où trouver le lien du formulaire « Devenez membre de mon Club Privilège » ?</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://observant-muse-76e.notion.site/Exemple-de-script-pour-vid-o-de-pr-sentation-de-son-Club-Privil-ge-25f46ef191c7808192e7d6bef3fa6485" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">12. Exemple de « script » vidéo pour présenter son Club Privilège à ses clients lors du 1<sup>er</sup> envoi</a>
+                  </td>
+                </tr>
+                <tr><td style="height: 8px;"></td></tr>
+                <tr>
+                  <td style="padding: 12px 16px; background-color: #f9fafb; border-radius: 8px;">
+                    <a href="https://www.youtube.com/watch?v=e_ri5k1q_k4" target="_blank" style="color: #fcb723; font-size: 14px; text-decoration: none; font-weight: 500;">13. Comment ajouter les icônes des réseaux sociaux ?</a>
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- Separator -->
+              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 24px 0;">
+              
+              <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Nous sommes là pour vous simplifier la vie, automatiser ce qui peut l'être et vous aider à maximiser l'impact de votre Club Privilège dès les premières campagnes.
+              </p>
+              
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Au plaisir de collaborer avec vous,
+              </p>
             </td>
           </tr>
           
           <!-- Footer -->
           <tr>
             <td style="padding: 20px 40px 40px 40px; border-top: 1px solid #e5e7eb;">
-              <p style="margin: 0 0 8px 0; font-size: 14px; color: #6b7280;">
-                Cordialement,
-              </p>
               <p style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; color: #111827;">
-                L'équipe ClickOn
+                Équipe ClickOn
               </p>
             </td>
           </tr>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { PDFViewer } from "@/components/pdf-viewer";
 import { submitSignature, type ContractSignature } from "@/lib/supabase-signature";
 import { fillPdfFormFields } from "@/lib/pdfFiller";
@@ -78,6 +79,26 @@ export default function SignaturePage() {
       .then((data) => setIpAddress(data.ip))
       .catch(() => setIpAddress("unknown"));
   }, []);
+
+  // Read URL params to pre-fill form
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const firstName = searchParams.get("firstName");
+    const lastName = searchParams.get("lastName");
+    const email = searchParams.get("email");
+    const phone = searchParams.get("phone");
+
+    if (firstName || lastName || email || phone) {
+      setFormData((prev) => ({
+        ...prev,
+        firstName: firstName || prev.firstName,
+        lastName: lastName || prev.lastName,
+        email: email || prev.email,
+        phone: phone || prev.phone,
+      }));
+    }
+  }, [searchParams]);
 
   // Track previous URL for cleanup
   const previousPdfUrlRef = useRef<string>("");

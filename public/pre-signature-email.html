@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votre portail ClickOn est prêt</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f9fafb;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td align="center" style="padding: 40px 20px;">
+        <table role="presentation" style="width: 100%; max-width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          
+          <!-- Header with Logo -->
+          <tr>
+            <td align="center" style="padding: 40px 40px 20px 40px;">
+              <img src="https://www.clickon.solutions/clickon-logo.png" alt="ClickOn" style="height: 48px; width: auto;">
+            </td>
+          </tr>
+          
+          <!-- Yellow accent bar -->
+          <tr>
+            <td style="padding: 0 40px;">
+              <div style="height: 4px; background-color: #fcb723; border-radius: 2px;"></div>
+            </td>
+          </tr>
+          
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 30px 40px;">
+              <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Bonjour {{ $json.name }},
+              </p>
+              
+              <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                <strong>Bonne nouvelle : votre portail ClickOn est maintenant prêt.</strong>
+              </p>
+              
+              <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Nous aurons l'occasion d'en discuter plus en détail lors de votre rencontre du vendredi 21 novembre à 9h00 avec Félix Giroux. D'ici là, si la curiosité vous pique, sachez que tout est déjà en place de notre côté.
+              </p>
+              
+              <!-- Last Step Section -->
+              <h2 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 700; color: #111827;">
+                Dernière étape avant l'accès à votre portail
+              </h2>
+              
+              <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Afin de vous donner accès à votre portail ClickOn, il ne reste qu'une seule étape : la signature de l'entente de service.
+              </p>
+              
+              <p style="margin: 0 0 12px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                <strong>Voici un aperçu des principaux éléments :</strong>
+              </p>
+              
+              <!-- Key Elements List -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f9fafb; border-radius: 8px; margin-bottom: 24px;">
+                <tr>
+                  <td style="padding: 16px 20px;">
+                    <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8; color: #374151;">
+                      <li><strong>Durée :</strong> 12 mois</li>
+                      <li><strong>Coût :</strong> 450 $ + taxes par mois (incluant une carte-cadeau mensuelle de 50 $)</li>
+                      <li><strong>Prix mensuels :</strong> un grand prix entre 1 000 $ et 5 000 $ est tiré chaque mois</li>
+                      <li><strong>Bases de données :</strong> ClickOn n'a aucun droit de propriété sur vos données</li>
+                      <li><strong>Responsabilités :</strong> vous demeurez responsable de l'exactitude des données intégrées et des consentements clients, conformément aux lois applicables (loi anti-pourriel et protection des données)</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- Access Portal Section -->
+              <h2 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 700; color: #111827;">
+                Accéder à votre portail
+              </h2>
+              
+              <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Cliquez sur le lien ci-dessous pour signer l'entente et accéder à votre portail ClickOn :
+              </p>
+              
+              <!-- CTA Button -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+                <tr>
+                  <td align="center">
+                    <a href="https://www.clickon.solutions/tools/signature?firstName={{ $json.firstName }}&lastName={{ $json.lastName }}&email={{ $json.email }}&phone={{ $json.phone }}" target="_blank" style="display: inline-block; padding: 16px 32px; background-color: #fcb723; color: #000000; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 8px;">
+                      Signer l'entente et accéder à mon portail
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="margin: 0 0 24px 0; font-size: 14px; line-height: 1.6; color: #6b7280; text-align: center;">
+                Une fois l'entente signée, vous serez automatiquement redirigé vers votre portail.
+              </p>
+              
+              <!-- Separator -->
+              <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 24px 0;">
+              
+              <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Au plaisir d'échanger avec vous très bientôt,
+              </p>
+              
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #374151;">
+                Bonne journée,
+              </p>
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 20px 40px 40px 40px; border-top: 1px solid #e5e7eb;">
+              <p style="margin: 0 0 16px 0; font-size: 14px; font-weight: 600; color: #111827;">
+                L'équipe ClickOn
+              </p>
+            </td>
+          </tr>
+          
+        </table>
+        
+        <!-- Footer Links -->
+        <table role="presentation" style="width: 100%; max-width: 600px; border-collapse: collapse;">
+          <tr>
+            <td align="center" style="padding: 20px;">
+              <p style="margin: 0; font-size: 12px; color: #9ca3af;">
+                © 2026 ClickOn Solutions. Tous droits réservés.
+              </p>
+            </td>
+          </tr>
+        </table>
+        
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
