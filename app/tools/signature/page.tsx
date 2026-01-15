@@ -193,6 +193,7 @@ export default function SignaturePage() {
   const isFormDataComplete =
     formData.firstName.trim() !== "" &&
     formData.lastName.trim() !== "" &&
+    formData.title.trim() !== "" &&
     formData.email.trim() !== "" &&
     formData.phone.trim() !== "" &&
     formData.streetAddress.trim() !== "" &&
@@ -242,6 +243,7 @@ export default function SignaturePage() {
     const fieldsToCheck: (keyof FormData)[] = [
       "firstName",
       "lastName",
+      "title",
       "email",
       "phone",
       "streetAddress",
@@ -264,6 +266,7 @@ export default function SignaturePage() {
   const isFormValid =
     formData.firstName.trim() !== "" &&
     formData.lastName.trim() !== "" &&
+    formData.title.trim() !== "" &&
     formData.email.trim() !== "" &&
     formData.phone.trim() !== "" &&
     formData.streetAddress.trim() !== "" &&
@@ -373,26 +376,77 @@ export default function SignaturePage() {
     setIsSubmitting(false);
   };
 
-  useEffect(() => {
-    if (submitStatus === "success") {
-      const timer = setTimeout(() => {
-        window.location.href = "https://app.clickon.it.com/Account/SignIn?ReturnUrl=%2F";
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [submitStatus]);
-
   if (submitStatus === "success") {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
-        <div className="w-full max-w-md rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-2xl">
-          <div className="bg-opacity-10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#fbb624]">
-            <CheckCircle className="h-10 w-10 text-[#fbb624]" />
+        <div className="w-full max-w-2xl rounded-2xl border border-gray-100 bg-white p-8 shadow-2xl">
+          {/* Logo */}
+          <div className="mb-6 flex justify-center">
+            <img
+              src="https://www.clickon.solutions/clickon-logo.png"
+              alt="ClickOn Logo"
+              className="h-10 md:h-12"
+            />
           </div>
-          <h2 className="mb-2 text-2xl font-bold text-gray-900">Merci !</h2>
-          <p className="text-gray-600">Votre signature a été enregistrée avec succès.</p>
-          <p className="mt-4 text-sm text-gray-500">
-            Vous serez redirigé automatiquement dans 5 secondes...
+
+          {/* Yellow accent bar */}
+          <div className="mx-auto mb-6 h-1 w-full rounded bg-[#fcb723]"></div>
+
+          {/* Success Icon */}
+
+          <h2 className="mb-4 text-center text-2xl font-bold text-gray-900">
+            Félicitations et bienvenue dans l&apos;univers ClickOn !
+          </h2>
+
+          <p className="mb-4 text-center text-gray-600">
+            Nous sommes très heureux de vous accueillir parmi nos membres et de débuter avec vous
+            cette collaboration pour la prochaine année.
+          </p>
+
+          <p className="mb-6 text-center text-gray-600">
+            Vous recevrez sous peu un courriel avec une copie de votre contrat signé pour vos
+            dossiers.
+          </p>
+
+          {/* Portal Access Section */}
+          <div className="mb-6 rounded-lg bg-gray-100 p-6">
+            <h3 className="mb-4 text-lg font-bold text-gray-900">Accès à votre portail ClickOn</h3>
+            <p className="mb-4 text-gray-600">
+              Votre portail est maintenant actif. Vous pouvez y accéder dès maintenant :
+            </p>
+            <div className="space-y-2 text-xl text-gray-700">
+              <p>
+                <strong>Lien du portail :</strong>{" "}
+                <a
+                  href="https://app.clickon.it.com/"
+                  className="text-[#fcb723] hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://app.clickon.it.com/
+                </a>
+              </p>
+              <p>
+                <strong>Identifiant :</strong> {formData.email}
+              </p>
+              <p>
+                <strong>Mot de passe temporaire :</strong> Clickon2026
+              </p>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center">
+            <a
+              href="https://app.clickon.it.com/Account/SignIn?ReturnUrl=%2F"
+              className="inline-block rounded-lg bg-[#fcb723] px-8 py-4 text-lg font-semibold text-black transition-colors hover:bg-[#e5a520]"
+            >
+              Accéder à mon portail ClickOn
+            </a>
+          </div>
+
+          <p className="mt-6 text-center text-sm text-gray-500">
+            Au plaisir de collaborer avec vous !
           </p>
         </div>
       </div>
@@ -469,16 +523,18 @@ export default function SignaturePage() {
 
               <div>
                 <label htmlFor="title" className="mb-1 block text-sm font-medium text-gray-700">
-                  Titre
+                  Titre <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   id="title"
                   name="title"
+                  ref={isFirstMissingField("title") ? setFirstMissingFieldRefCallback : null}
                   value={formData.title}
                   onChange={handleInputChange}
-                  className="signature-input-field"
+                  className={getFieldClass("title")}
                   placeholder="Propriétaire, Directeur, etc."
+                  required
                 />
               </div>
 
